@@ -1,11 +1,33 @@
-title: "파이썬 공부 노트"
-description: "파이썬 관련 공부 내용 정리"
-remote_theme: "mmistakes/minimal-mistakes@4.24.0"  # 최신 버전은 docs를 참고하세요.
-baseurl: ""  # 필요에 따라 설정 (예: /pythonstudy)
-url: "https://pythonstudygit.github.io"
+# _config.yml
 
----
-layout: single
-title: "소개"
-permalink: /introduction/
----
+# 사이트 기본 정보
+title: "내 파이썬 공부 노트"
+description: "파이썬 관련 공부 내용을 정리한 사이트입니다."
+url: "https://pythonstudygit.github.io"   # 사이트의 정식 URL
+baseurl: ""                               # 사이트가 루트에 위치하면 빈 값으로 둡니다.
+
+# 원격 테마 설정 (Minimal Mistakes 사용)
+remote_theme: "mmistakes/minimal-mistakes@4.24.0"  # 최신 버전은 docs를 확인하세요.
+
+# 작성자 정보 (선택 사항)
+author:
+  name: "홍길동"
+  email: "hong@example.com"
+
+# Minimal Mistakes 테마 관련 설정
+minimal_mistakes_skin: "default"   # 테마 색상 스킨 설정 (default, dark, 등)
+header:
+  caption: "내 파이썬 공부 노트"
+  overlay_color: "rgba(0, 0, 0, 0.5)"
+  # background: "/assets/images/header.jpg"  # 헤더에 사용할 배경 이미지 (원하는 경우)
+
+# 플러그인 설정 (GitHub Pages는 제한된 플러그인만 지원)
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# 빌드 시 제외할 파일/폴더
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
