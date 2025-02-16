@@ -1,5 +1,5 @@
-title: "내 파이썬 공부 노트"
-description: "파이썬 관련 공부 내용을 정리한 사이트입니다."
+title: "파이썬 공부 노트"
+description: "파이썬 관련 공부 내용 정리"
 baseurl: "/"
 url: "https://pythonstudygit.github.io"
 
@@ -36,4 +36,4 @@ search:
   focus_shortcut_key: 'k'
   
 # Color scheme supports "light" (default) and "dark"
-color_scheme: dark
+color_scheme: light
