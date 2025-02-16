@@ -1,6 +1,6 @@
 ---
-title: Python 설치치
-parent: Python 튜토리얼
+title: Python 설치
+parent: 파이썬 튜토리얼
 nav_order: 1
 has_toc: false
 ---
