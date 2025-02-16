@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Home
-hide_from_nav: true
+nav_order: 1
 description: "description"
 permalink: /
 ---

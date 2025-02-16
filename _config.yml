@@ -3,6 +3,9 @@ description: "파이썬 관련 공부 내용 정리"
 baseurl: "/"
 url: "https://pythonstudygit.github.io"
 
+plugins:
+  - jekyll-remote-theme
+
 remote_theme: "just-the-docs/just-the-docs"
 
 # Enable or disable the site search
