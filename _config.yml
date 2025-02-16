@@ -1,0 +1,5 @@
+title: "파이썬 공부 노트"
+description: "파이썬 관련 공부 내용 정리"
+remote_theme: "mmistakes/minimal-mistakes@4.24.0"  # 최신 버전은 docs를 참고하세요.
+baseurl: ""  # 필요에 따라 설정 (예: /pythonstudy)
+url: "https://pythonstudygit.github.io"
