@@ -21,4 +21,4 @@ has_toc: false
 
 ## Pycharm 실행
 ![](Pycharm_설치_007.png)  
-![](Pycharm_설치_008.png)
+![](Pycharm_설치_008.png)  
