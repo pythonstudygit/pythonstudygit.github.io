@@ -228,6 +228,7 @@ GEM
       forwardable-extended (~> 2.6)
     public_suffix (4.0.7)
     racc (1.8.1)
+    rake (13.2.1)
     rb-fsevent (0.11.2)
     rb-inotify (0.11.1)
       ffi (~> 1.0)
@@ -261,6 +262,9 @@ PLATFORMS
 
 DEPENDENCIES
   github-pages (~> 227)
+  jekyll-default-layout
+  kramdown-parser-gfm
+  rake
   webrick
 
 BUNDLED WITH

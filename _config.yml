@@ -7,7 +7,15 @@ remote_theme: "just-the-docs/just-the-docs"
 plugins:
   - jekyll-remote-theme # not required
 
-markdown: kramdown
+markdown: GFM
+kramdown:
+  input: GFM
+  gfm_quirks: [paragraph_end]
+  header_offset: 2
+  syntax_highlighter: coderay
+  syntax_highlighter_opts:
+    line_numbers: table
+    bold_every: 5
 
 # Enable or disable the site search
 # Supports true (default) or false
@@ -29,7 +37,7 @@ search:
   # Set the search token separator
   # Default: /[\s\-/]+/
   # Example: enable support for hyphenated search words
-  tokenizer_separator: /[\s/]+/
+  tokenizer_separator: '/[\s/]+/'
   # Display the relative url in search results
   # Supports true (default) or false
   rel_url: true
