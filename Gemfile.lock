@@ -253,13 +253,15 @@ GEM
       thread_safe (~> 0.1)
     unicode-display_width (1.8.0)
     uri (1.0.2)
-    zeitwerk (2.7.2)
+    webrick (1.9.1)
+    zeitwerk (2.6.18)
 
 PLATFORMS
   x64-mingw-ucrt
 
 DEPENDENCIES
   github-pages (~> 227)
+  webrick
 
 BUNDLED WITH
    2.6.5
