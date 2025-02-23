@@ -7,16 +7,6 @@ remote_theme: "just-the-docs/just-the-docs"
 plugins:
   - jekyll-remote-theme # not required
 
-markdown: GFM
-kramdown:
-  input: GFM
-  gfm_quirks: [paragraph_end]
-  header_offset: 2
-  syntax_highlighter: coderay
-  syntax_highlighter_opts:
-    line_numbers: table
-    bold_every: 5
-
 # Enable or disable the site search
 # Supports true (default) or false
 search_enabled: true
