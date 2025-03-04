@@ -39,3 +39,11 @@ search:
   
 # Color scheme supports "light" (default) and "dark"
 color_scheme: light
+
+# Set a path/url to a favicon that will be displayed by the browser
+favicon_ico: "/assets/images/favicon.ico"
+
+mermaid:
+  # Version of mermaid library
+  # Pick an available version from https://cdn.jsdelivr.net/npm/mermaid/
+  version: "9.1.3"
