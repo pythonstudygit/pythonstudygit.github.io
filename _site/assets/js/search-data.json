@@ -1,689 +1,689 @@
 {"0": {
+    "doc": "Django",
+    "title": "Django",
+    "content": " ",
+    "url": "/docs/Django/Django.html",
+    
+    "relUrl": "/docs/Django/Django.html"
+  },"1": {
+    "doc": "Hello World 웹사이트",
+    "title": "Hello World 웹사이트",
+    "content": "이 장에서는 웹사이트와 웹 프레임워크가 어떻게 작동하는지 검토하고, Django 의 아키텍처를 살펴본 후 “Hello World” 를 표시하는 간단한 Django 웹사이트를 구축해 볼 것이다. ",
+    "url": "/docs/Django/%EC%B4%88%EB%B3%B4%EC%9E%90%EB%A5%BC%20%EC%9C%84%ED%95%9C%20Django/Hello_World_%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8.html",
+    
+    "relUrl": "/docs/Django/%EC%B4%88%EB%B3%B4%EC%9E%90%EB%A5%BC%20%EC%9C%84%ED%95%9C%20Django/Hello_World_%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8.html"
+  },"2": {
+    "doc": "Hello World 웹사이트",
+    "title": "인터넷 작동 방식",
+    "content": "https://learndjango.com 웹사이트에 접속할 때 발생하는 과정을 여섯 단계로 간략하게 정리하면 다음과 같다. | 브라우저에 도메인 이름을 입력한다. | 브라우저는 DNS 를 통해 도메인 이름에 해당하는 IP 주소를 조회한다. | 브라우저는 해당 IP 주소의 웹 서버와 네트워크 연결을 설정한다. | 브라우저는 원하는 리소스에 대한 HTTP 요청을 보낸다. | 웹사이트는 요청을 처리한 후 HTTP 응답을 반환한다. | 브라우저는 응답 내용을 기반으로 웹페이지를 랜더링한다. | . ",
+    "url": "/docs/Django/%EC%B4%88%EB%B3%B4%EC%9E%90%EB%A5%BC%20%EC%9C%84%ED%95%9C%20Django/Hello_World_%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8.html#%EC%9D%B8%ED%84%B0%EB%84%B7-%EC%9E%91%EB%8F%99-%EB%B0%A9%EC%8B%9D",
+    
+    "relUrl": "/docs/Django/%EC%B4%88%EB%B3%B4%EC%9E%90%EB%A5%BC%20%EC%9C%84%ED%95%9C%20Django/Hello_World_%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8.html#인터넷-작동-방식"
+  },"3": {
+    "doc": "Hello World 웹사이트",
+    "title": "웹 프레임워크 작동 방식",
+    "content": "웹사이틑 기본적으로 정적static과 동적dynamic 두 가지 유형으로 나뉜다. 정적 웹사이트는 개별 HTML 문서로 구성되며, 예를 들어 10페이지로 구성된 웹사이트라면 10개의 HTML 문서가 필요하다. 이 방식은 매우 작은 규모의 사이트에만 적합하다. 반면에 대부분의 웹사이트는 데이터메이스, HTML 템플릿, 그리고 브라우저로 전송되기 전에 파일을 생성할 수 있는 애플리케이션 서버로 구성된 동적 웹사이트다. 동적 웹사이트에서는 상대적으로 적은 코드로 수백, 때로는 수천 개의 웹 페이지를 생성할 수 있다. Django 와 같은 웹 프레임워크는 이러한 동적 웹사이트를 위해 설계되었다. 웹 프레임워크인 Django 의 핵심 역할은 다음 세 가지이다. | 웹페이지를 랜더링하기 위해 URL 을 뷰 로직에 매핑한다. | 데이터베이스와 상호작용하기 위한 추상화 계층을 제공한다. | 템플릿 시스템을 통해 HTML 과 유사한 코드를 출력한다. | . ",
+    "url": "/docs/Django/%EC%B4%88%EB%B3%B4%EC%9E%90%EB%A5%BC%20%EC%9C%84%ED%95%9C%20Django/Hello_World_%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8.html#%EC%9B%B9-%ED%94%84%EB%A0%88%EC%9E%84%EC%9B%8C%ED%81%AC-%EC%9E%91%EB%8F%99-%EB%B0%A9%EC%8B%9D",
+    
+    "relUrl": "/docs/Django/%EC%B4%88%EB%B3%B4%EC%9E%90%EB%A5%BC%20%EC%9C%84%ED%95%9C%20Django/Hello_World_%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8.html#웹-프레임워크-작동-방식"
+  },"4": {
+    "doc": "Hello World 웹사이트",
+    "title": "Django 아키텍처",
+    "content": "Django 에서 고려해야 할 네 가지 주요 구성 요소는 URL, View, Model, Template 이다. 시각적으로 Django 의 요청/응답 주기는 위 다이어그램과 같으며, 실선은 필수 상호 작용을, 점선은 선택적 상호작용을 나타낸다. | 웹 브라우저에서 HTTP 요청 가 들어오면, 가장 먼저 Django 의 URL Displaycher(urls.py) 가 동작하여 설정된 URL 패턴을 검색한 뒤 처음으로 일치하는 **View(view.py)** 에 요청을 전달한다. | 해당 View 는 요청된 데이터와 스타일을 조합해 HTTP 응답을 생성한 뒤 웹 브라우저로 반환한다. 사실 이 두가지만으로도 Django 웹사이트를 구성할 수 있다. (URL Dispatcher 와 View 만 사용) | . 그러나 실제로는 Model 과 Template 이 추가되는 경우가 더 흔하다. | 데이터베이스를 사용하는 웹사이트에서는 View 가 Model(models.py) 과 상호작용한다. Model 은 데이터베이스 테이블과 동작 방식을 정의하며, 데이터베이스 쿼리를 지원한다. | 이 데이터를 다시 View 로 전달하면, 보통 Template(HTML, XML, JSON 등 텍스트 기반 파일 형식) 을 통해 화면에 랜더링할 수 있는 형태로 변환한다. | 최종적으로 View 가 필요한 정보를 모두 확보하면, 웹 브라우저에 HTTP 응답을 반환한다. | . ",
+    "url": "/docs/Django/%EC%B4%88%EB%B3%B4%EC%9E%90%EB%A5%BC%20%EC%9C%84%ED%95%9C%20Django/Hello_World_%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8.html#django-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98",
+    
+    "relUrl": "/docs/Django/%EC%B4%88%EB%B3%B4%EC%9E%90%EB%A5%BC%20%EC%9C%84%ED%95%9C%20Django/Hello_World_%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8.html#django-아키텍처"
+  },"5": {
+    "doc": "Hello World 웹사이트",
+    "title": "Model-View-Controller vs Model-View-Template",
+    "content": "MVC 패턴(Model-View-Controller) 은 애플리케이션의 데이터와 로직, 그리고 표시 영역을 분리해 개발자가 보다 쉽게 구조를 이해할 수 있도록 도와준다. 전통적인 MVC 패턴은 세 가지 주요 구성 요소가 있다. | **Model:** 데이터와 핵심 비즈니스 로직을 관리 | **View:** 모델의 데이터를 특정 형식으로 랜더링 | **Controller:** 사용자 입력을 받아 애플리케이션에 맞는 로직을 수행 | . Django 의 접근 방식은 종종 MVT(Model-View-Template) 라고 불리지만, 실제로는 URL 설정을 포함한 4가지 요소, 즉 **MVTU(Model-View-Template-URL)** 패턴에 더 가깝다. | Model: 데이터와 핵심 비즈니스 로직을 관리 | View: 사용자에게 어떤 데이터를 보낼지 결정하되, 그 표현 방식은 정의하지 않음 | Template: HTML(필요에 따라 CSS, JavaScript, 정적 자산static assets 포함) 을 사용해 데이터를 표시 | URL Configuration: 정규 표현식을 사용해 URL 을 뷰에 연결 | . 전통적인 MVC 패턴과 장고의 MVT 패턴를 비교하면 다음과 같이 이야기할 수 있다. | MVC 에서의 View 는 Django 의 Template 과 유사하다. | MVC 에서의 Controller 는 Django 의 View 와 URL Dispatcher 로 나누어져 있다. | . ",
+    "url": "/docs/Django/%EC%B4%88%EB%B3%B4%EC%9E%90%EB%A5%BC%20%EC%9C%84%ED%95%9C%20Django/Hello_World_%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8.html#model-view-controller-vs-model-view-template",
+    
+    "relUrl": "/docs/Django/%EC%B4%88%EB%B3%B4%EC%9E%90%EB%A5%BC%20%EC%9C%84%ED%95%9C%20Django/Hello_World_%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8.html#model-view-controller-vs-model-view-template"
+  },"6": {
+    "doc": "Hello World 웹사이트",
+    "title": "Django 의 기본 파일 구성",
+    "content": "이번 장에서는 가능한 한 간단하게 “Hello, World” 웹 사이트를 만들어 본다. 일반적으로 Django 웹사이트에는 URL Dispatcher, View, Model, Template 모두 사용되지만, 사실 URL Dispatcher 와 View 만으로도 동작이 가능하다. 이번 예시에서는 URL Dispatcher 와 View 만 사용한다. 장고 시작하기 에서 만든 가상 환경에서 실습한다. &gt; tree /f /a | manage.py | \\---django_project asgi.py settings.py urls.py wsgi.py __init__.py . | init.py: 해당 폴더의 파일들이 파이썬 패키지의 일부임을 알리는 파일이다. 이 파일이 없으면 Django 에서 종종 필요한 디렉토리 간 파일 임포트가 불가능하다. | asgi.py: 선택적으로 사용할 수 있는 ASGI(Asynchronous Server Gateway Interface) 애플리케이션을 설정한다. | settings.py: Django 프로젝트 전반의 설정을 담당한다. | urls.py: 브라우저나 URL 요청에 대해 어떤 페이지를 구성할지 Django 에 알려준다. | wsgi.py: Django 의 기본 설정인 WSGI(Web Server Gateway Interface) 애플리케이션을 설정한다. | . manage.py 파일은 django_project 디렉토리의 일부가 아니며, 로컬 웹 서버 실행이나 새 앱 생성 등 다양한 Django 관리 명령어를 실행할 때 사용된다. ",
+    "url": "/docs/Django/%EC%B4%88%EB%B3%B4%EC%9E%90%EB%A5%BC%20%EC%9C%84%ED%95%9C%20Django/Hello_World_%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8.html#django-%EC%9D%98-%EA%B8%B0%EB%B3%B8-%ED%8C%8C%EC%9D%BC-%EA%B5%AC%EC%84%B1",
+    
+    "relUrl": "/docs/Django/%EC%B4%88%EB%B3%B4%EC%9E%90%EB%A5%BC%20%EC%9C%84%ED%95%9C%20Django/Hello_World_%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8.html#django-의-기본-파일-구성"
+  },"7": {
+    "doc": "Hello World 웹사이트",
+    "title": "마이그레이션",
+    "content": "&gt; python manage.py runserver Watching for file changes with StatReloader Performing system checks... System check identified no issues (0 silenced). You have 18 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions. Run 'python manage.py migrate' to apply them. March 02, 2025 - 01:11:25 Django version 5.0.12, using settings 'django_project.settings' Starting development server at http://127.0.0.1:8000/ Quit the server with CTRL-BREAK. Django 서버를 시작하면 You have 18 unapplied migration(s) 문구에 보이는데, 이번에 그것이 무엇인지 살펴보자. 마이그레이션은 Django 가 데이터베이스 변경 사항을 추적하기 위해 자동으로 생성하는 특별한 스크립트이다. 시간이 지남에 따라 프로젝트가 커지면, 데이터베이스와 모든 테이블의 구조를 정의하는 Django 데이터베이스 모델에 여러 변경이 생기기 마련이다. Django 의 마이그레이션 프레임워크를 사용하면, 이러한 변경 사항을 시간순으로 추적하여 특정 마이그레이션 파일에 정의된 구성과 동일하도록 데이터베이스를 수정할 수 있다. startproject 명령어로 새 프로젝트를 시작하면, Django 에는 admin, auth, contenttypes, sessions 등의 여러 내장 앱이 포함된다. 이 앱들은 데이터베이스에 변경 사항을 적용한다. 로컬 데이터베이스에 해당 변경 사항을 반영하기 위해서는 migrate 관리 명령어를 사용하면 된다. 로컬 서버를 중지하고 migrate 명령을 사용해 보자. &gt; python manage.py migrate Operations to perform: Apply all migrations: admin, auth, contenttypes, sessions Running migrations: Applying contenttypes.0001_initial... OK Applying auth.0001_initial... OK Applying admin.0001_initial... OK Applying admin.0002_logentry_remove_auto_add... OK Applying admin.0003_logentry_add_action_flag_choices... OK ... Applying auth.0012_alter_user_first_name_max_length... OK Applying sessions.0001_initial... OK . migrate 명령어는 사용 가능한 모든 마이그레이션을 적용하며, admin, auth, contenttypes, sessions 등의 앱에 관한 마이그레이션을 나열한다. 예를 들어, Applying contenttypes.0001_initial... OK 는 contenttypes 앱의 0001_initial 마이그레이션 스크립트가 성공적으로 실행되었음을 의미한다. 이제 로컬 서버를 다시 실행해보면 더 이상 경고가 나타나지 않는다. &gt; python manage.py runserver Watching for file changes with StatReloader Performing system checks... System check identified no issues (0 silenced). March 02, 2025 - 01:20:47 Django version 5.0.12, using settings 'django_project.settings' Starting development server at http://127.0.0.1:8000/ Quit the server with CTRL-BREAK. ",
+    "url": "/docs/Django/%EC%B4%88%EB%B3%B4%EC%9E%90%EB%A5%BC%20%EC%9C%84%ED%95%9C%20Django/Hello_World_%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8.html#%EB%A7%88%EC%9D%B4%EA%B7%B8%EB%A0%88%EC%9D%B4%EC%85%98",
+    
+    "relUrl": "/docs/Django/%EC%B4%88%EB%B3%B4%EC%9E%90%EB%A5%BC%20%EC%9C%84%ED%95%9C%20Django/Hello_World_%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8.html#마이그레이션"
+  },"8": {
+    "doc": "Hello World 웹사이트",
+    "title": "앱App 생성하기",
+    "content": "하나의 Django 프로젝트는 여러 개의 앱을 포함할 수 있다. 이는 코드를 깔끔하고 읽기 쉽게 유지하기 위한 조직적 기법이다. 각 앱은 특정 기능을 담당하도록 분리되어야 한다. django_project/settings.py 파일을 살펴보면, Django 가 기본으로 제공하는 여섯 개의 내장 앱이 이미 설정되어 있다. 이들은 모두 django.contrib 디렉토리에 위치하며 admin, auth, contenttypes, sessions, messages, staticfiles 기능을 제어한다. django_project/settings.py . INSTALLED_APPS = [ 'django.contrib.admin', 'django.contrib.auth', 'django.contrib.contenttypes', 'django.contrib.sessions', 'django.contrib.messages', 'django.contrib.staticfiles', ] . 사실 원하는 경우 모든 코드를 단일 파일에 작성해도 문제는 없지만, 앱으로 기능을 분리해두면 Django 프로젝트의 구조를 더욱 명확히 이해하고 유지보수하기 쉬워진다. 예를 들어, 전자상거래(e-commerce) 웹사이트라면, 사용자 인증을 위한 앱, 결제 기능을 위한 앱, 상품 상세 정보를 제공하는 앱 등을 각각 따로 두는 식이다. 앱으로 기능을 분리하는 시점은 주관적이지만, 한 앱에 너무 많은 기능이 몰려 있다고 느껴지면 나누는 것이 좋다. 새로운 앱을 만들기 위해 우선 현재 실행 중인 서버를 종료한다. 그리고 startapp 명령어 뒤에 만들고자 하는 앱 이름을 입력한다. 예시에서는 pages 라는 이름을 사용한다. Django 에서는 관례상 앱 이름을 복수형(예: pages, payments 등)으로 쓰는 것이 좋다. 단, blog 처럼 복수형이 어색한 경우는 예외이다. &gt; python manage.py startapp pages . 이 명령을 실행하면 django_project 디렉토리 안에 새로운 pages 디렉토리가 생성되고, 아래와 같은 파일들이 포함된다. \\---pages | admin.py | apps.py | models.py | tests.py | views.py | __init__.py | \\---migrations __init__.py . 각 파일은 다음과 같은 역할을 한다. | admin.py: Django 의 내장 Admin 앱 설정을 위한 파일 | apps.py: 해당 앱 자체에 대한 설정 파일 | models.py: 데이터베이스 모델을 정의하는 파일. Django 가 이를 자동으로 데이터베이스 테이블로 변환 | migrations/: models.py 파일 변경 사항을 추적해 데이터베이스와 동기화하기 위한 마이그레이션 스크립트를 저장 | test.py: 앱별 테스트 코드를 작성하는 파일 | views.py: 웹 앱의 요청/응답 로직을 처리하는 파일 | . 새로운 앱이 생성되었지만 Django 가 이를 인식하도록 django_project/settings.py 파일의 INSTALLED_APPS 목록에 앱 이름을 명시해줘야 한다. 에디터에서 django_project/settings.py 파일을 열고, 기존의 여섯 개 내장 앱 아래에 pages 를 추가하자. django_project/settings.py . INSTALLED_APPS = [ 'django.contrib.admin', 'django.contrib.auth', 'django.contrib.contenttypes', 'django.contrib.sessions', 'django.contrib.messages', 'django.contrib.staticfiles', 'pages', # new ] . ",
+    "url": "/docs/Django/%EC%B4%88%EB%B3%B4%EC%9E%90%EB%A5%BC%20%EC%9C%84%ED%95%9C%20Django/Hello_World_%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8.html#%EC%95%B1app-%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0",
+    
+    "relUrl": "/docs/Django/%EC%B4%88%EB%B3%B4%EC%9E%90%EB%A5%BC%20%EC%9C%84%ED%95%9C%20Django/Hello_World_%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8.html#앱app-생성하기"
+  },"9": {
+    "doc": "Hello World 웹사이트",
+    "title": "첫 번째 View 만들기",
+    "content": "이번에는 “Hello, World!” 라는 텍스트를 출력하는 정적 페이지를 만들어본다. 이 페이지는 데이터페이스나 템플릿 파일을 사용하지 않으며, Django 의 View 와 URL 이 어떻게 동작하는지 간단하게 소개한다. View 는 웹 요청을 받아 웹 응답을 반환하는 파이썬 함수이다. 응답은 웹 페이지의 HTML 내용, 리다이렉트, 404 에러, 이미지 등 거의 모든 형태가 될 수 있다. 웹 페이지가 요청되면 Django 는 자동으로 요청에 대한 메타데이터를 담은 HttpRequest 객체를 생성한다. 이후 Django 는 적절한 View 를 로드하여 이 HttpRequest 객체를 첫 번째 매개변수로 전달한다. View 는 최종적으로 HttpResponse 객체를 반환하는 역할을 한다. pages 앱 안에 있는 views.py 파일의 초기 내용은 아래와 같다. pages/views.py . from django.shortcuts import render # Create your views here. render 를 다루는 것은 다음 장에서 하고, 지금은 pages/views.py 파일을 아래와 같이 업데이트 한다. pages/views.py . from django.http import HttpResponse def home_page_view(request): return HttpResponse(\"Hello, World!\") . | from django.http import HttpResponse: django.http 모듈에서 HttpResponse 클래스를 가져온다. | def home_page_view(request):: home_page_view 라는 함수를 정의한다. | 함수의 첫 번째 매개변수는 HttpRequest 객체로 관례상 request 라는 이름을 사용한다. (이름은 달라도 순서가 맞으면 작동함) | 이 view 는 “Hello, World!” 라는 텍스트가 담긴 HttpResponse 객체를 반환한다. | . 모든 view 는 이와 같이 작성된다. 먼저 view 의 이름을 정의하고, HttpRequest (여기서는 request) 객체를 받으며, 최종적으로 HttpResponse 객체를 반환한다. 추가 로직이나 매개변수를 넣을 수 있지만, 기본 패턴은 동일하다. ",
+    "url": "/docs/Django/%EC%B4%88%EB%B3%B4%EC%9E%90%EB%A5%BC%20%EC%9C%84%ED%95%9C%20Django/Hello_World_%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8.html#%EC%B2%AB-%EB%B2%88%EC%A7%B8-view-%EB%A7%8C%EB%93%A4%EA%B8%B0",
+    
+    "relUrl": "/docs/Django/%EC%B4%88%EB%B3%B4%EC%9E%90%EB%A5%BC%20%EC%9C%84%ED%95%9C%20Django/Hello_World_%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8.html#첫-번째-view-만들기"
+  },"10": {
+    "doc": "Hello World 웹사이트",
+    "title": "URL Dispatcher",
+    "content": "View 를 준비했으니 이제 관련 URL 을 구성할 차례이다. pages/urls.py 파일을 새로 생성하고 아래의 코드로 업데이트 하자. pages/urls.py . from django.urls import path from .views import home_page_view urlpatterns = [ path(\"\", home_page_view) ] . | from django.urls import path: Django 의 path 를 가져와 URL 패턴을 설정한다. | . 이 URL 패턴은 두 부분으로 이루어진다. | 경로(route): 여기서는 빈 문자열 \"\" 로 정의 | 뷰 참조(view): home_page_view | . 즉, 사용자가 빈 문자열로 표현되는 홈페이지를 요청하면, Django 는 home_page_view View 를 실행하게 된다. 다음 단계는 프로젝의 진입점인 django_project/urls.py 파일을 업데이트 하는 것이다. 이 파일은 각 앱에 속하지 않는 다른 URL 패턴들의 관문 역할을 한다. (이 아키텍처 패턴은 앞으로 복잡한 웹 애플리케이션을 만들면서 점점 더 중요해진다.) . Django 는 내장 관리자(admin)을 위한 경로를 자동으로 설정한다. 추가 URL 경로를 포함시키기 위해, django.urls 모듈에서 include 함수를 가져온 후, 다시 빈 문자열 \"\" 을 사용하여 pages 앱에 포함된 모든 URL 을 불러온다. 자세한 내부 작동 방식은 Django 공식 문서를 참고하자. 업데이트된 코드는 다음과 같다. from django.contrib import admin from django.urls import path, include urlpatterns = [ path('admin/', admin.site.urls), path(\"\", include(\"pages.urls\")) ] . 이제 사용자가 빈 문자열로 표현되는 홈페이지를 방문하면 Django 는 pages 앱 내에서 일치하는 URL 경로를 찾는다. 서버가 정상 작동하는지 확인하기 위해 Django 서버를 시작하자. 웹브라우저에서 http://localhost:8000 또는 http://127.0.0.1:8000 접속했을 때 위 스크린샷과 같이 뜨면 정상적으로 동작한 것이다. ",
+    "url": "/docs/Django/%EC%B4%88%EB%B3%B4%EC%9E%90%EB%A5%BC%20%EC%9C%84%ED%95%9C%20Django/Hello_World_%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8.html#url-dispatcher",
+    
+    "relUrl": "/docs/Django/%EC%B4%88%EB%B3%B4%EC%9E%90%EB%A5%BC%20%EC%9C%84%ED%95%9C%20Django/Hello_World_%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8.html#url-dispatcher"
+  },"11": {
+    "doc": "OpenAI",
+    "title": "OpenAI",
+    "content": " ",
+    "url": "/docs/OpenAI/OpenAI.html",
+    
+    "relUrl": "/docs/OpenAI/OpenAI.html"
+  },"12": {
+    "doc": "Pandas",
+    "title": "Pandas",
+    "content": " ",
+    "url": "/docs/Pandas/Pandas.html",
+    
+    "relUrl": "/docs/Pandas/Pandas.html"
+  },"13": {
     "doc": "Pycharm 설치",
     "title": "Pycharm 설치",
     "content": " ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/Pycharm_%EC%84%A4%EC%B9%98/Pycharm_%EC%84%A4%EC%B9%98.html",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/Pycharm_%EC%84%A4%EC%B9%98/Pycharm_%EC%84%A4%EC%B9%98.html"
-  },"1": {
+  },"14": {
     "doc": "Pycharm 설치",
     "title": "Pycharm 다운로드",
     "content": ". | 아래 링크에서 PyCharm Community Edition 다운로드 https://www.jetbrains.com/pycharm/download/ | . ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/Pycharm_%EC%84%A4%EC%B9%98/Pycharm_%EC%84%A4%EC%B9%98.html#pycharm-%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/Pycharm_%EC%84%A4%EC%B9%98/Pycharm_%EC%84%A4%EC%B9%98.html#pycharm-다운로드"
-  },"2": {
+  },"15": {
     "doc": "Pycharm 설치",
     "title": "Pycharm 설치",
     "content": ". ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/Pycharm_%EC%84%A4%EC%B9%98/Pycharm_%EC%84%A4%EC%B9%98.html",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/Pycharm_%EC%84%A4%EC%B9%98/Pycharm_%EC%84%A4%EC%B9%98.html"
-  },"3": {
+  },"16": {
     "doc": "Pycharm 설치",
     "title": "Pycharm 실행",
     "content": ". ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/Pycharm_%EC%84%A4%EC%B9%98/Pycharm_%EC%84%A4%EC%B9%98.html#pycharm-%EC%8B%A4%ED%96%89",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/Pycharm_%EC%84%A4%EC%B9%98/Pycharm_%EC%84%A4%EC%B9%98.html#pycharm-실행"
-  },"4": {
+  },"17": {
     "doc": "Python 설치",
     "title": "Python 설치",
     "content": " ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/Python_%EC%84%A4%EC%B9%98/Python_%EC%84%A4%EC%B9%98.html",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/Python_%EC%84%A4%EC%B9%98/Python_%EC%84%A4%EC%B9%98.html"
-  },"5": {
+  },"18": {
     "doc": "Python 설치",
     "title": "Python 다운로드",
     "content": ". | 홈페이지 접속 python.org -&gt; Download -&gt; All releases | Looking for a specific release? 에서 원하는 버전 Download 선택 | Files -&gt; Windows 의 경우 Windows Installer (64-bit) 선택하여 다운로드 | . ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/Python_%EC%84%A4%EC%B9%98/Python_%EC%84%A4%EC%B9%98.html#python-%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/Python_%EC%84%A4%EC%B9%98/Python_%EC%84%A4%EC%B9%98.html#python-다운로드"
-  },"6": {
+  },"19": {
     "doc": "Python 설치",
     "title": "Python 설치",
     "content": ". | Python 설치 Add python.exe to PATH 를 선택하면 현재 설치하는 버전의 Python 이 환경변수에 설정된다. 설치 완료 시 Disable path length limit 을 선택해준다. 설치 완료 | . ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/Python_%EC%84%A4%EC%B9%98/Python_%EC%84%A4%EC%B9%98.html",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/Python_%EC%84%A4%EC%B9%98/Python_%EC%84%A4%EC%B9%98.html"
-  },"7": {
+  },"20": {
     "doc": "Python 설치",
     "title": "설치 버전 확인",
     "content": ". | 버전 확인 C:\\Users\\ME&gt;python --version Python 3.12.9 . | 설치된 모든 버전 확인 C:\\Users\\ME&gt;py -0 -V:3.13 * Python 3.13 (64-bit) -V:3.12 Python 3.12 (64-bit) . | 설치된 모든 버전과 설치 경로 확인 C:\\Users\\ME&gt;py -0p -V:3.13 * C:\\Users\\ME\\AppData\\Local\\Programs\\Python\\Python313\\python.exe -V:3.12 C:\\Users\\ME\\AppData\\Local\\Programs\\Python\\Python312\\python.exe . | . ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/Python_%EC%84%A4%EC%B9%98/Python_%EC%84%A4%EC%B9%98.html#%EC%84%A4%EC%B9%98-%EB%B2%84%EC%A0%84-%ED%99%95%EC%9D%B8",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/Python_%EC%84%A4%EC%B9%98/Python_%EC%84%A4%EC%B9%98.html#설치-버전-확인"
-  },"8": {
-    "doc": "추상 팩토리 패턴 - Abstract Factory Pattern",
-    "title": "추상 팩토리 패턴 (Abstract Factory Patter)",
-    "content": " ",
-    "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EC%83%9D%EC%84%B1%20%ED%8C%A8%ED%84%B4%20-%20Creational%20Pattern/abstract_factory_pattern.html#%EC%B6%94%EC%83%81-%ED%8C%A9%ED%86%A0%EB%A6%AC-%ED%8C%A8%ED%84%B4-abstract-factory-patter",
-    
-    "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EC%83%9D%EC%84%B1%20%ED%8C%A8%ED%84%B4%20-%20Creational%20Pattern/abstract_factory_pattern.html#추상-팩토리-패턴-abstract-factory-patter"
-  },"9": {
-    "doc": "추상 팩토리 패턴 - Abstract Factory Pattern",
-    "title": "패턴 개요",
-    "content": " ",
-    "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EC%83%9D%EC%84%B1%20%ED%8C%A8%ED%84%B4%20-%20Creational%20Pattern/abstract_factory_pattern.html#%ED%8C%A8%ED%84%B4-%EA%B0%9C%EC%9A%94",
-    
-    "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EC%83%9D%EC%84%B1%20%ED%8C%A8%ED%84%B4%20-%20Creational%20Pattern/abstract_factory_pattern.html#패턴-개요"
-  },"10": {
-    "doc": "추상 팩토리 패턴 - Abstract Factory Pattern",
-    "title": "코드 예제1",
-    "content": "Code . from abc import ABC, abstractmethod from typing import Type class VegPizza(ABC): @abstractmethod def prepare(self): pass class NonVegPizza(ABC): @abstractmethod def serve(self): pass class DeluxVeggiePizza(VegPizza): def prepare(self) -&gt; None: print(f\"Prepare: {type(self).__name__}\") class ChikenPizza(NonVegPizza): def serve(self, veg_pizza) -&gt; None: print(f\"{type(self).__name__}, is served with Chicken on {type(veg_pizza).__name__}\") class MexicanVegPizza(VegPizza): def prepare(self) -&gt; None: print(f\"Prepare {type(self).__name__}\") class HamPizza(NonVegPizza): def serve(self, veg_pizza) -&gt; None: print(f\"{type(self).__name__}, is served with Ham on {type(veg_pizza).__name__}\") class PizzaFactory(ABC): @abstractmethod def create_veg_pizza(self) -&gt; Type[VegPizza]: pass @abstractmethod def create_nonveg_pizza(self) -&gt; Type[NonVegPizza]: pass class IndianPizzaFactory(PizzaFactory): def create_veg_pizza(self): return DeluxVeggiePizza() def create_nonveg_pizza(self): return ChikenPizza() class USPizzaFactory(PizzaFactory): def create_veg_pizza(self): return MexicanVegPizza() def create_nonveg_pizza(self): return HamPizza() class PizzaStore: def make_pizzas(self): for factory in [IndianPizzaFactory(), USPizzaFactory()]: factory: PizzaFactory self.non_veg_pizza = factory.create_nonveg_pizza() self.veg_pizza = factory.create_veg_pizza() self.veg_pizza.prepare() self.non_veg_pizza.serve(self.veg_pizza) pizza = PizzaStore() pizza.make_pizzas() . Result . Prepare: DeluxVeggiePizza ChikenPizza, is served with Chicken on DeluxVeggiePizza Prepare MexicanVegPizza HamPizza, is served with Ham on MexicanVegPizza . ",
-    "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EC%83%9D%EC%84%B1%20%ED%8C%A8%ED%84%B4%20-%20Creational%20Pattern/abstract_factory_pattern.html#%EC%BD%94%EB%93%9C-%EC%98%88%EC%A0%9C1",
-    
-    "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EC%83%9D%EC%84%B1%20%ED%8C%A8%ED%84%B4%20-%20Creational%20Pattern/abstract_factory_pattern.html#코드-예제1"
-  },"11": {
-    "doc": "추상 팩토리 패턴 - Abstract Factory Pattern",
-    "title": "추상 팩토리 패턴 - Abstract Factory Pattern",
-    "content": " ",
-    "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EC%83%9D%EC%84%B1%20%ED%8C%A8%ED%84%B4%20-%20Creational%20Pattern/abstract_factory_pattern.html",
-    
-    "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EC%83%9D%EC%84%B1%20%ED%8C%A8%ED%84%B4%20-%20Creational%20Pattern/abstract_factory_pattern.html"
-  },"12": {
-    "doc": "행위 패턴",
-    "title": "행위 패턴",
-    "content": " ",
-    "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%ED%96%89%EC%9C%84%20%ED%8C%A8%ED%84%B4%20-%20Behavioral%20Pattern/behavioral_pattern.html",
-    
-    "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%ED%96%89%EC%9C%84%20%ED%8C%A8%ED%84%B4%20-%20Behavioral%20Pattern/behavioral_pattern.html"
-  },"13": {
-    "doc": "생성 패턴 - Creational Pattern",
-    "title": "생성 패턴 - Creational Pattern",
-    "content": " ",
-    "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EC%83%9D%EC%84%B1%20%ED%8C%A8%ED%84%B4%20-%20Creational%20Pattern/creational_pattern.html",
-    
-    "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EC%83%9D%EC%84%B1%20%ED%8C%A8%ED%84%B4%20-%20Creational%20Pattern/creational_pattern.html"
-  },"14": {
-    "doc": "퍼사드 패턴 - Facade Pattern",
-    "title": "퍼사드 패턴 (The Facade Pattern)",
-    "content": " ",
-    "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EA%B5%AC%EC%A1%B0%20%ED%8C%A8%ED%84%B4%20-%20Structural%20Pattern/facade_pattern.html#%ED%8D%BC%EC%82%AC%EB%93%9C-%ED%8C%A8%ED%84%B4-the-facade-pattern",
-    
-    "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EA%B5%AC%EC%A1%B0%20%ED%8C%A8%ED%84%B4%20-%20Structural%20Pattern/facade_pattern.html#퍼사드-패턴-the-facade-pattern"
-  },"15": {
-    "doc": "퍼사드 패턴 - Facade Pattern",
-    "title": "구조 디자인 패턴 개요",
-    "content": ". | 객체와 클래스를 병합해 더 큰 구조를 만든다. | 개체의 관계를 더 쉽게 식별할 수 있는 디자인 패턴이다. | 클래스 패턴은 상속을 통해 추상화해 인터페이스를 제공하는 반면에 객체 패턴은 한 개의 객체를 더 큰 객체로 확장시킨다. 구조 패턴은 클래스 패턴과 객체 패턴을 합친 패턴이다. | . ",
-    "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EA%B5%AC%EC%A1%B0%20%ED%8C%A8%ED%84%B4%20-%20Structural%20Pattern/facade_pattern.html#%EA%B5%AC%EC%A1%B0-%EB%94%94%EC%9E%90%EC%9D%B8-%ED%8C%A8%ED%84%B4-%EA%B0%9C%EC%9A%94",
-    
-    "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EA%B5%AC%EC%A1%B0%20%ED%8C%A8%ED%84%B4%20-%20Structural%20Pattern/facade_pattern.html#구조-디자인-패턴-개요"
-  },"16": {
-    "doc": "퍼사드 패턴 - Facade Pattern",
-    "title": "구조 패턴의 몇 가지 예",
-    "content": ". | 어댑터 패턴(The Adapter Pattern): 클라이언트의 요구에 따라 특정 인터페이스를 다른 인터페이스에 맞춘다. 서로 다른 클래스의 인터페이스를 목적에 맞춰 변환한다. | 브릿지 패턴(The Bridge Pattern): 객체의 인터페이스와 구현을 분리해 독립적으로 동작할 수 있게 한다. | 데코레이터 패턴(The Decorator Pattern): 런타임에 객체의 책임을 덧붙인다. 인터페이스를 통해 객체에 속성을 추가한다. | . ",
-    "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EA%B5%AC%EC%A1%B0%20%ED%8C%A8%ED%84%B4%20-%20Structural%20Pattern/facade_pattern.html#%EA%B5%AC%EC%A1%B0-%ED%8C%A8%ED%84%B4%EC%9D%98-%EB%AA%87-%EA%B0%80%EC%A7%80-%EC%98%88",
-    
-    "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EA%B5%AC%EC%A1%B0%20%ED%8C%A8%ED%84%B4%20-%20Structural%20Pattern/facade_pattern.html#구조-패턴의-몇-가지-예"
-  },"17": {
-    "doc": "퍼사드 패턴 - Facade Pattern",
-    "title": "퍼사드 디자인 패턴 개요",
-    "content": ". | 서브시스템의 인터페이스를 통합시킨 단일 인터페이스를 제공해 클리언트가 쉽게 서브시스템에 접근할 수 있게 한다. | 단일 인터페이스 객체로 복잡한 서브시스템을 대체한다. 서브시스템을 캡슐화하는 것이 아니라 모든 서브시스템들을 결합한다. | 클라이언트와 내부 구현을 분리한다. | . 퍼사드 패턴은 복잡한 서브시스템을 간단한 인터페이스를 통해 제어할 수 있도록 만들어준다. Code . class Hotelier: def __init__(self): print(\"Arranging the Hotel for Marriage?\") def __isAvailable(self): print(\"Is the Hotel free for the event on given day?\") return True def book_hotel(self): if self.__isAvailable(): print(\"Registered the Booking\\n\\n\") class Florist: def __init__(self): print(\"Flower Decorations for the Event? --\") def set_flower_requirement(self): print(\"Carnations, Roses and Lilies would be used for Decorations\\n\\n\") class Caterer: def __init__(self): print(\"Food Arrangements for the Event --\") def set_cuisine(self): print(\"Chinese &amp; Continental Cuisine to be served\\n\\n\") class Musician: def __init__(self): print(\"Musical Arrangements for the Marriage --\") def set_music_type(self): print(\"Jazz and Classical will be played\\n\\n\") class EventManager: def __init__(self): print(\"Event Manager:: Letme talk to the folks\\n\") def arrange(self): self.hotelier = Hotelier() self.hotelier.book_hotel() self.florist = Florist() self.florist.set_flower_requirement() self.caterer = Caterer() self.caterer.set_cuisine() self.musician = Musician() self.musician.set_music_type() class You: def __init__(self): print(\"You:: Whoa! Marriage Arrangements?!!!\") def ask_event_manager(self): print(\"You:: Let's Contact the Event Manager\\n\\n\") em = EventManager() em.arrange() def __del__(self): print(\"You:: Thanks to Event Manager, all preparations done! Phew!\") you = You() you.ask_event_manager() . Result . You:: Whoa! Marriage Arrangements?!!! You:: Let's Contact the Event Manager Event Manager:: Letme talk to the folks Arranging the Hotel for Marriage? Is the Hotel free for the event on given day? Registered the Booking Flower Decorations for the Event? -- Carnations, Roses and Lilies would be used for Decorations Food Arrangements for the Event -- Chinese &amp; Continental Cuisine to be served Musical Arrangements for the Marriage -- Jazz and Classical will be played You:: Thanks to Event Manager, all preparations done! Phew! . You 클래스 (클라이언트) 는 EventManager 를 통해 결혼 준비를 요청한다. EventManager 클래스는 내부적으로 서브시스템 클래스(Hotelier, Florist, Caterer, Musician)를 생성 및 호출하여, 클라이언트가 복잡한 내부 로직을 알 필요 없이 간단한게 이벤트를 진행할 수 있게 한다. ",
-    "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EA%B5%AC%EC%A1%B0%20%ED%8C%A8%ED%84%B4%20-%20Structural%20Pattern/facade_pattern.html#%ED%8D%BC%EC%82%AC%EB%93%9C-%EB%94%94%EC%9E%90%EC%9D%B8-%ED%8C%A8%ED%84%B4-%EA%B0%9C%EC%9A%94",
-    
-    "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EA%B5%AC%EC%A1%B0%20%ED%8C%A8%ED%84%B4%20-%20Structural%20Pattern/facade_pattern.html#퍼사드-디자인-패턴-개요"
-  },"18": {
-    "doc": "퍼사드 패턴 - Facade Pattern",
-    "title": "퍼사드 패턴 - Facade Pattern",
-    "content": " ",
-    "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EA%B5%AC%EC%A1%B0%20%ED%8C%A8%ED%84%B4%20-%20Structural%20Pattern/facade_pattern.html",
-    
-    "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EA%B5%AC%EC%A1%B0%20%ED%8C%A8%ED%84%B4%20-%20Structural%20Pattern/facade_pattern.html"
-  },"19": {
-    "doc": "팩토리 메소드 패턴 - Factory Method Pattern",
-    "title": "팩토리 메소드 패턴 (Factory Method Pattern)",
-    "content": " ",
-    "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EC%83%9D%EC%84%B1%20%ED%8C%A8%ED%84%B4%20-%20Creational%20Pattern/factory_method_pattern.html#%ED%8C%A9%ED%86%A0%EB%A6%AC-%EB%A9%94%EC%86%8C%EB%93%9C-%ED%8C%A8%ED%84%B4-factory-method-pattern",
-    
-    "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EC%83%9D%EC%84%B1%20%ED%8C%A8%ED%84%B4%20-%20Creational%20Pattern/factory_method_pattern.html#팩토리-메소드-패턴-factory-method-pattern"
-  },"20": {
-    "doc": "팩토리 메소드 패턴 - Factory Method Pattern",
-    "title": "패턴 개요",
-    "content": "팩토리 메소드 패턴은 객체를 생성하는 인터페이스르 정의하고 어떤 클래스를 초기화할지는 서브 클래스의 결정을 맡긴다. ",
-    "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EC%83%9D%EC%84%B1%20%ED%8C%A8%ED%84%B4%20-%20Creational%20Pattern/factory_method_pattern.html#%ED%8C%A8%ED%84%B4-%EA%B0%9C%EC%9A%94",
-    
-    "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EC%83%9D%EC%84%B1%20%ED%8C%A8%ED%84%B4%20-%20Creational%20Pattern/factory_method_pattern.html#패턴-개요"
   },"21": {
-    "doc": "팩토리 메소드 패턴 - Factory Method Pattern",
-    "title": "코드 예제1",
-    "content": "Code . from abc import ABC, abstractmethod from typing import Dict, Type # Product class Section(ABC): @abstractmethod def describe(self): pass # ConcreteProduct class PersonalSection(Section): def describe(self) -&gt; None: print(\"Personal Section\") class AlbumSection(Section): def describe(self) -&gt; None: print(\"AlbumSection\") class PatentSection(Section): def describe(self) -&gt; None: print(\"Patent Section\") class PublicationSection(Section): def describe(self) -&gt; None: print(\"Publication Section\") # Creator # 프로필을 구성하는 인터페이스를 정의한다. # create_profile() 메서드를 선언하여 하위 클래스가 이를 구현하도록 강제한다. class Profile(ABC): def __init__(self): self.sections = [] self.create_profile() @abstractmethod def create_profile(self): pass def get_sections(self): return self.sections def add_section(self, section): self.sections.append(section) # Profile 하위 클래스를 등록할 딕셔너리 profile_registry: Dict[str, Type[Profile]] = {} # 동적으로 적절한 클래스의 객체를 생성하기 위한 데코레이터 # 클래스의 이름을 key 로, value 로 클래스를 register_profile 에 등록한다. def register_profile(cls: Type[Profile]) -&gt; Type[Profile]: profile_registry[cls.__name__] = cls return cls # ConcreteCreator # Profile 의 구체적인 구현체 # 각각의 클래스는 create_profile() 메서드를 구현하여 자신에게 맞는 Section 을 추가한다. @register_profile class LinkedIn(Profile): def create_profile(self): self.add_section(PersonalSection()) self.add_section(PatentSection()) self.add_section(PublicationSection()) @register_profile class FaceBook(Profile): def create_profile(self): self.add_section(PersonalSection()) self.add_section(AlbumSection()) profile_type = input(\"Which Profile you'd like to create? [LinkedIn or FaceBook]? \").lower() profile = None if profile_type == \"linkedin\": profile = profile_registry[\"LinkedIn\"]() # LinkedIn 객체 생성 elif profile_type == \"facebook\": profile = profile_registry[\"FaceBook\"]() # FaceBook 객체 생성 else: raise ValueError(f\"Unknown Profile Type: {profile_type}\") print(\"Creating Profile..\", type(profile).__name__) print(\"Profile has sections --\", profile.get_sections()) . Result . Which Profile you'd like to create? [LinkedIn or FaceBook]? facebook Creating Profile.. FaceBook Profile has sections -- [&lt;__main__.PersonalSection object at 0x0000024DBA01E210&gt;, &lt;__main__.AlbumSection object at 0x0000024DBA02C590&gt;] . ",
-    "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EC%83%9D%EC%84%B1%20%ED%8C%A8%ED%84%B4%20-%20Creational%20Pattern/factory_method_pattern.html#%EC%BD%94%EB%93%9C-%EC%98%88%EC%A0%9C1",
+    "doc": "SOLID 원칙",
+    "title": "SOLID 원칙",
+    "content": "SOLID 는 로버트 C. 마틴Robert C. Martin이 제안한 다섯 가지 설계 원칙의 약어로, 소프트웨어를 보다 이해하기 쉽고 유연하며 유지보수가 용이하도록 만드는 것을 목표로 한다. 이번 장에서 다룰 주요 주제는 다음과 같다. | 단일 책임 원칙SRP: Single Responsibility Principle | 개방-폐쇄 원칙OCP: Open-Closed Principle | 리스코프 치환 원칙LSP: Liskov Substitution Principle | 인터페이스 분리 원칙ISP: Interface Segregation Principle | 의존성 역전 원칙DIP: Dependency Inversion Principle | . ",
+    "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EA%B8%B0%EB%B3%B8_%EC%9B%90%EC%B9%99/SOLID_%EC%9B%90%EC%B9%99.html",
     
-    "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EC%83%9D%EC%84%B1%20%ED%8C%A8%ED%84%B4%20-%20Creational%20Pattern/factory_method_pattern.html#코드-예제1"
+    "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EA%B8%B0%EB%B3%B8_%EC%9B%90%EC%B9%99/SOLID_%EC%9B%90%EC%B9%99.html"
   },"22": {
-    "doc": "팩토리 메소드 패턴 - Factory Method Pattern",
-    "title": "팩토리 메소드 패턴 - Factory Method Pattern",
-    "content": " ",
-    "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EC%83%9D%EC%84%B1%20%ED%8C%A8%ED%84%B4%20-%20Creational%20Pattern/factory_method_pattern.html",
+    "doc": "SOLID 원칙",
+    "title": "단일 책임 원칙 (SRP)",
+    "content": "SRP 는 소프트웨어 설계의 기본 개념으로, 기능을 제공하는 클래스를 정의할 때 그 클래스는 단 하나의 이유로 존재해야 하며, 기능의 한 측면에 대해서만 책임을 져야 한다고 주장한다. 간단히 말해서, 각 클래스는 하나의 작업 또는 책임만을 가져야 하며, 그 작업은 클래스 내부에 캡슐화되어야 한다는 것이다. SRP 를 준수하면 보다 집중적이고 응집력 있으며 전문화된 기능을 가진 클래스를 추구하게 된다. 이러한 접근 방식은 코드 베이스의 유지보수성과 이해도를 향상시키는 데 중요한 역할을 한다. 각 클래스가 명확하고 단일한 목적을 가지게 되면, 코드를 관리/이해/확장하는 것이 쉬워진다. 실제로 SRP 를 적용하면, 작은 규모의 집중된 클래스로 이어지게 되며, 이 클래스들은 조합되어 복잡한 시스템을 구성하면서도 명확하고 체계적인 구조를 유지할 수 있다. NOTE SRP 는 클래스의 코드 라인 수를 최소화하는 것이 아니라, 클래스가 변경되어야 하는 단일 이유를 보장함으로써 수정 시 의도치 않은 부작용의 가능성을 줄이는 데 초점을 맞춘다. 예제 - SRP 를 따르는 소프트웨어 설계 . SRP 를 따르지 않은 전형적인 코드 예제를 먼저 보자. class Report: def __init__(self, content): self.content = content def generate(self): print(f\"Report content: {self.content}\") def save_to_file(self, filename): with open(filename, \"w\") as file: file.write(self.content) . 위 예제의 Report 클래스는 보고서를 생성하는 것과 파일에 저장하는 두 가지 책임을 가지고 있다. 물론 이렇게 구현해도 동작은 하겠지만, 설계 원칙은 미래의 요구사항 변화와 복잡성 증대에 대비해 개선을 고민하도록 한다. SRP 는 이러한 상황에서 책임을 분리하라고 가르친다. SRP 를 준수하기 위해, 코드를 다음과 같이 두 개의 클래스로 리팩토링 할 수 있다. class Report: def __init__(self, content): self.content = content def generate(self): print(f\"Report content: {self.content}\") class ReportSaver: def __init__(self, report: Report): self.report: Report = report def save_to_file(self, filename: str): with open(filename, \"w\") as file: file.write(self.report.content) if __name__ == '__main__': # Report, ReportSaver 클래스가 정상적으로 동작하는지 확인하기 위한 테스트 report_content = \"This is the content.\" report = Report(report_content) report.generate() report_saver = ReportSaver(report) report_saver.save_to_file('report.txt') . Report content: This is the content. 리포트 파일도 정상적으로 생성되었고, 저장된 내용은 다음과 같다. This is the content. | Report 클래스는 보고서 내용을 생성하는 역할만 담당함. | ReportSaver 클래스는 Report 클래스에서 생성한 보고서를 파일에 저장하는 역할을 담당함. | 이 예제에서 보듯, SRP 를 따르면 책임이 분리된 더 깔끔하고 유지보수가 용이하며 적응력 있는 코드를 작성할 수 있음. | . ",
+    "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EA%B8%B0%EB%B3%B8_%EC%9B%90%EC%B9%99/SOLID_%EC%9B%90%EC%B9%99.html#%EB%8B%A8%EC%9D%BC-%EC%B1%85%EC%9E%84-%EC%9B%90%EC%B9%99-srp",
     
-    "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EC%83%9D%EC%84%B1%20%ED%8C%A8%ED%84%B4%20-%20Creational%20Pattern/factory_method_pattern.html"
+    "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EA%B8%B0%EB%B3%B8_%EC%9B%90%EC%B9%99/SOLID_%EC%9B%90%EC%B9%99.html#단일-책임-원칙-srp"
   },"23": {
+    "doc": "SOLID 원칙",
+    "title": "개방-폐쇄 원칙 (OCP)",
+    "content": "OCP 는 클래스나 모듈 같은 소프트웨어 엔티티가 확장을 위해서는 열려 있어야 하지만, 수정(변경)에는 닫혀 있어야 한다고 강조한다. 이는 한 번 정의되고 구현된 소프트웨어 엔티티는 새로운 기능을 추가하기 위해 직접 수정되어서는 안 된다는 의미이다. 대신, 상속이나 인터페이스를 통해 해당 엔티티를 확장하여 새로운 요구사항과 동작을 수용해야 한다. 예제 - OCP 를 따르는 설계 . Rectangle 클래스를 정의했다고 가정해 보자. 예를 들어, 다양한 도형의 면적을 계산하는 기능을 추가한다고 했을 때, 초기 가설적 코드에서는 Report 와 비슷하게 Rectangle 클래스와 이를 처리하는 caculate_area 함수를 아래와 같이 정의한다. class Rectangle: def __init__(self, width: float, height: float): self.width: float = width self.height: float = height def cacluate_area(shape) -&gt; float: if isinstance(shape, Rectangle): return shape.width * shape.height . 여기서 한 가지 문제는 새로운 도형을 추가하려면 cacluate_area 함수를 수정해야 한다는 점이다. 이는 유지보수 관점에서 이상적이지 않다. 왜냐하면 코드를 반복적으로 수정하게 되면, 다른 부분에 영향을 주어 버그가 발생할 위험이 있기 때문이다. 더 나은 설계를 위해 OCP 를 따르도록 코드를 개선해 보았다. 여기서는 Circle 클래스를 추가하여 도형 인터페이스를 확장하는 방법을 보여준다. import math from typing import Protocol class Shape(Protocol): def area(self) -&gt; float: ... class Rectangle: def __init__(self, width: float, height: float): self.width: float = width self.height: float = height def area(self): return self.width * self.height class Circle: def __init__(self, radius: float): self.radius: float = radius def area(self) -&gt; float: return math.pi * (self.radius ** 2) def calculate_area(shape: Shape) -&gt; float: return shape.area() if __name__ == '__main__': rect = Rectangle(12, 8) rect_area = calculate_area(rect) print(f\"Rectangle area: {rect_area:.2f}\") circle = Circle(6.5) circle_area = calculate_area(circle) print(f\"Circle area: {circle_area:.2f}\") . Rectangle area: 96.00 Circle area: 132.73 . 위 에제에서는 Protocol 을 사용하여 각 도형이 스스로 면적을 계산하도록 구현하였으므로, 새로운 도형을 추가할 때 기존 코드를 수정할 필요 없이 확장할 수 있음을 보여준다. | Shape 프로토콜을 정의하여 모든 도형이 area 메서드를 구현하도록 요구함. | Rectangle 과 Circle 클래스는 각각 area 메서드를 구현하여 Shape 인터페이스를 만족함. | calculate_area 함수는 Shape 인터페이스를 기반으로 동작하여, 어떤 도형이 들어오더라도 해당 도형의 area 메서드를 호출함. | Ractangle 과 Circle 클래스에서 크기를 구하는 area 를 구현했으므로 caculate_area 함수는 추가되는 도형에 대해 수정할 필요가 없음. | . ",
+    "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EA%B8%B0%EB%B3%B8_%EC%9B%90%EC%B9%99/SOLID_%EC%9B%90%EC%B9%99.html#%EA%B0%9C%EB%B0%A9-%ED%8F%90%EC%87%84-%EC%9B%90%EC%B9%99-ocp",
+    
+    "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EA%B8%B0%EB%B3%B8_%EC%9B%90%EC%B9%99/SOLID_%EC%9B%90%EC%B9%99.html#개방-폐쇄-원칙-ocp"
+  },"24": {
+    "doc": "SOLID 원칙",
+    "title": "리스코프 치환 원칙 (LSP)",
+    "content": "LSP 는 서브클래스가 슈퍼클래스와 어떻게 관련되어야 하는지를 규정한다. LSP 에 따르면, 프로그램이 슈퍼클래스의 객체를 사용할 때, 해당 객체를 서브클래스의 객체로 대체해도 프로그램의 올바른 동작과 기대되는 행동이 변경되어서는 안된다. LSP 는 상속을 사용할 때, 서브클래스가 부모 클래스의 외부 동작을 변경하지 않고 확장해야 함을 보장한다. 예를 들어, 어떤 함수가 슈퍼클래스 객체와 함께 올바르게 작동한다면, 해당 슈퍼클래스의 서브클래스 객체와도 동일하게 작동해야 한다. 예제 - LSP 를 따르는 소프트웨어 설계 . Bird 클래스를 상속하는 Penguin 클래스를 예로 들어 보자. class Bird: def fly(self): print('I can fly') class Penguin(Bird): def fly(self): print('I can\\'t fly') def make_bird_fly(bird): bird.fly() . 현재 코드에서 Bird 클래스의 인스턴스를 함수에 전달하면 기대하는 동작이 나타나지만, Penguin 클래스의 인스턴스를 전달하면 다른 동작이 발생한다. 이로 인해 make_bird_fly 함수에서 일관된 동작을 보장하지 못한다. 다음 예제 코드는 이에 대한 개선 방안이다. class Bird: def move(self): print('I\\'m moving') class FlyingBird(Bird): def move(self): print('I\\'m flying') class FlightlessBird(Bird): def move(self): print('I\\'m walking') def make_bird_move(bird): bird.move() if __name__ == '__main__': generic_bird = Bird() eagle = FlyingBird() penguin = FlightlessBird() make_bird_move(generic_bird) make_bird_move(eagle) make_bird_move(penguin) . I'm moving I'm flying I'm walking . | Bird 클래스에 move 메소드를 도입하여 모든 새가 움직임을 가지도록 하고, FlyingBird 와 FlightlessBird 클래스로 분리해 각각 날거나 걷는 동작을 구현함. | FlyingBird 와 FlightlessBird 클래스는 슈퍼클래스인 Bird 의 역할을 대체할 수 있어, 프로그램의 예상 동작이 유지 됨. | . ",
+    "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EA%B8%B0%EB%B3%B8_%EC%9B%90%EC%B9%99/SOLID_%EC%9B%90%EC%B9%99.html#%EB%A6%AC%EC%8A%A4%EC%BD%94%ED%94%84-%EC%B9%98%ED%99%98-%EC%9B%90%EC%B9%99-lsp",
+    
+    "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EA%B8%B0%EB%B3%B8_%EC%9B%90%EC%B9%99/SOLID_%EC%9B%90%EC%B9%99.html#리스코프-치환-원칙-lsp"
+  },"25": {
+    "doc": "SOLID 원칙",
+    "title": "인터페이스 분리 원칙 (ISP)",
+    "content": "ISP 는 크고 범용적인 인터페이스보다는 더 작고 구체적인 인터페잇스를 설계할 것을 권장한다. 이 원칙은 한 클래스가 자신이 사용하지 않는 인터페이스를 강제로 구현하도록 강요받아서는 안 된다고 말한다. 파이썬 맥락에서는 클래스가 자신의 목적과 관련 없는 메서드를 상속받거나 구현할 필요가 없어야 한다는 것을 의미한다. 즉, 소프트웨어를 설계할 때 큰 단일 인터페이스를 만드는 대신, 작고 집중된 인터페이스를 만드는 것이 바람직하다. 이렇게 하면 클래스는 필요한 것만 상속받거나 구현하게 되어, 각 클래스에 관련성 있고 필수적인 메서드만 포함되도록 할 수 있다. 이 원칙을 따르면 소프트웨어의 모듈성, 코드 가독성 및 유지보수성이 향상되며, 부수 효과가 줄어들고 리팩토링과 테스트가 용이한 소프트웨어를 구축할 수 있다. 예제 - ISP 를 따르는 소프트웨어 설계 . 예를 들어, 인쇄, 스캔, 팩스 기능을 모두 제공하는 AllInOnePrinter 클래스가 있다고 가정해 보자. 이 클래스는 아래와 같이 정의된다. class AllInOnePrinter: def print_document(self): print('Printing') def scan_document(self): print('Scanning') def fax_document(self): print('Faxing') . 여기서 만약 단순히 인쇄만 하는 기능의 SimplePrinter 클래스를 만들고 싶다면, AllInOnePrinter 처럼 스캔과 팩스 기능까지 구현하거나 상속받아야 한다. 이는 이상적이지 않다. ISP 를 따르기 위해서는 각 기능별로 별도의 인터페이스를 만들어, 각 클래스가 자신에게 필요한 인터페이스만 구현하도록 해야 한다. 아래 코드는 위의 문제를 ISP 로 개선한 예제이다. from typing import Protocol class Printer(Protocol): def print_document(self): ... class Scanner(Protocol): def scan_document(self): ... class Fax(Protocol): def fax_document(self): ... class AllInOnePrinter: def print_document(self): print('Printing') def scan_document(self): print('Scanning') def fax_document(self): print('Faxing') class SimplePrinter: def print_document(self): print('Simply Printing') def do_the_print(printer: Printer): printer.print_document() if __name__ == '__main__': all_in_one = AllInOnePrinter() all_in_one.scan_document() all_in_one.fax_document() do_the_print(all_in_one) simple = SimplePrinter() do_the_print(simple) . Scanning Faxing Printing Simply Printing . | Printer, Scanner, Fax 와 같은 작은 인터페이스(Protocol)을 정의하여, 각 클래스가 필요한 기능만 구현하도록 함. | AllInOnePrinter 는 모든 인터페이스를 구현하고, SimplePrinter 는 인쇄 기능만 구현하게 되어, 각 클래스가 자신의 역할에 충실함. | 이를 통해 모듈성이 향상되고, 불필요한 의존성이 줄어들어 코드 유지보수성이 개선됌. | . ",
+    "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EA%B8%B0%EB%B3%B8_%EC%9B%90%EC%B9%99/SOLID_%EC%9B%90%EC%B9%99.html#%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4-%EB%B6%84%EB%A6%AC-%EC%9B%90%EC%B9%99-isp",
+    
+    "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EA%B8%B0%EB%B3%B8_%EC%9B%90%EC%B9%99/SOLID_%EC%9B%90%EC%B9%99.html#인터페이스-분리-원칙-isp"
+  },"26": {
+    "doc": "SOLID 원칙",
+    "title": "의존성 역전 원칙 (DIP)",
+    "content": "DIP 는 고수준 모듈이 저수준 모듈에 직접 의존해서는 안 되며, 대신 둘 다 추상화나 인터페이스에 의존해야 한다고 주장한다. 이렇게 하면 고수준 구성 요소를 저수준 구성 요소의 세부 사항으로부터 분리할 수 있다. 예제 - DIP 를 따르는 소프트웨어 설계 . 먼저, 이메일을 통해 알림을 보내는 Notification 클래스를 생각해 보자. 원래 코드는 Email 클래스에 직접 의존하는 방식으로 작성되어 있다. class Email: def send_email(self, message): print(f'Sending email: {message}') class Notification: def __init__(self): self.email = Email() def send(self, message): self.email.send_email(message) . 현재 Notification 클래스는 저수준 모듈인 Email 클래스에 직접 의존하고 있는데, 이는 이상적이지 않다. 이를 개선하기 위해 DIP 를 적용하여 추상화를 도입해보자. from typing import Protocol class MessageSender(Protocol): def send(self, message: str): ... class Email: def send(self, message: str): print(f\"Sending email: {message}\") class Notification: def __init__(self, sender: MessageSender): self.sender = sender def send(self, message: str): self.sender.send(message) if __name__ == '__main__': email = Email() notif = Notification(sender=email) notif.send(message='This is the message') . | MessageSender 인터페이스(Protocol)를 도입하여, Notification 클래스가 MessageSender 인터페이스를 통해 메시지를 전송하도록 변경. | Notification 과 Email 모두 MessageSender 에 의존하게 되어, Notification 은 Email 의 구체적인 구현에 영향을 받지 않으며, DIP 를 준수하게 됨. | . ",
+    "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EA%B8%B0%EB%B3%B8_%EC%9B%90%EC%B9%99/SOLID_%EC%9B%90%EC%B9%99.html#%EC%9D%98%EC%A1%B4%EC%84%B1-%EC%97%AD%EC%A0%84-%EC%9B%90%EC%B9%99-dip",
+    
+    "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EA%B8%B0%EB%B3%B8_%EC%9B%90%EC%B9%99/SOLID_%EC%9B%90%EC%B9%99.html#의존성-역전-원칙-dip"
+  },"27": {
     "doc": "Home",
     "title": "Welcome to github.io",
     "content": "Github Description . ",
     "url": "/#welcome-to-githubio",
     
     "relUrl": "/#welcome-to-githubio"
-  },"24": {
+  },"28": {
     "doc": "Home",
     "title": "Get started now View it on GitHub",
     "content": " ",
     "url": "/#get-started-now-view-it-on-github",
     
     "relUrl": "/#get-started-now-view-it-on-github"
-  },"25": {
+  },"29": {
     "doc": "Home",
     "title": "Home",
     "content": " ",
     "url": "/",
     
     "relUrl": "/"
-  },"26": {
-    "doc": "보그 패턴 - Borg Pattern",
-    "title": "보그 패턴 (Borg Pattern)",
-    "content": " ",
-    "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EC%83%9D%EC%84%B1%20%ED%8C%A8%ED%84%B4%20-%20Creational%20Pattern/monostate_pattern.html#%EB%B3%B4%EA%B7%B8-%ED%8C%A8%ED%84%B4-borg-pattern",
-    
-    "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EC%83%9D%EC%84%B1%20%ED%8C%A8%ED%84%B4%20-%20Creational%20Pattern/monostate_pattern.html#보그-패턴-borg-pattern"
-  },"27": {
-    "doc": "보그 패턴 - Borg Pattern",
-    "title": "패턴 개요",
-    "content": "보그 패턴은 모든 객체가 같은 상태를 공유하는 패턴이다. 이렇게 하면 여러 객체를 생성하면서도 공통의 설정이나 데이터를 유지할 수 있다. 보그 패턴은 모노스테이트 싱글톤 패턴(Monostate Singlton Pattern)이라고 부르기도 한다. __init__ 으로 구현하기 . Code . class Borg: _shared_state = {} def __init__(self): self.x = 1 self.__dict__ = self._shared_state b0 = Borg() b1 = Borg() b0.x = 4 print(b0 is b1) # b0 과 b1 는 서로 다른 객체이다. print(\"Object State 'b0':\", b0.__dict__) print(\"Object State 'b1':\", b1.__dict__) . Result . False Object State 'b0': {'1': '2', 'x': 4} Object State 'b1': {'1': '2', 'x': 4} . __new__ 로 구현하기 . Code . class Borg: _shared_state = {} def __new__(cls, *args, **kwargs): obj = super(Borg, cls).__new__(cls) obj.__dict__ = cls._shared_state return obj . 상속을 통한 상태 분리 . Code . class Borg: _shared_state = {} def __new__(cls, *args, **kwargs): obj = super(Borg, cls).__new__(cls) obj.__dict__ = cls._shared_state return obj class GlobalConfig(Borg): _shared_state = {} # Borg 클래스의 _shared_state 와 분리하기 위함. def __init__(self, config_value = None): # super 함수로 Borg 클래스의 __init__ 메소드를 오바리이딩 # 이렇게 함으로 써 __dict__ 가 올바른 공유 상태로 재할당되게 된다. super().__init__() if config_value is not None: self.config_value = config_value class TestGlobalConfig(GlobalConfig): _shared_state = {} # GlobalConfig 의 _shared_state 와 분리하기 위함 # TestGlobalConfig 는 GlobalConfig 의 속성에 영향을 주지 않음. # Monostate 패턴은 Singleton 보다 유연해 테스트 환경에 사용하기 적합하다. production_config = GlobalConfig(42) print(\"production_config value:\", production_config.config_value) test_config0 = TestGlobalConfig(100) test_config1 = TestGlobalConfig() print(f\"test_config0 value: {test_config0.config_value}\") print(f\"test_config1 value: {test_config1.config_value}\") print(f\"production_config value: {production_config.config_value}\") . Result . production_config value: 42 test_config0 value: 100 test_config1 value: 100 production_config value: 42 . 모킹(Mocking)으로 메소드 오버라이딩 . Code . # Borg 패턴 class Borg: _shared_state = {} def __init__(self): self.__dict__ = self._shared_state # Production 환경에서의 Service class Service(Borg): _shared_state = {} # Production 환경의 공유 상태 def __init__(self): super().__init__() if not hasattr(self, \"data\"): self.data = \"Real Service Data\" def get_data(self): return self.data service = Service() print(\"Production Service Data:\", service.get_data()) # Test 환경에서는 Service 를 상속받아 mocking 한 버전을 생성 class MockService(Service): _shared_state = {} def get_data(self): return \"Mocked Data\" mock_service = MockService() print(f\"Mock Service data: {mock_service.get_data()}\") . Result . Production Service Data: Real Service Data Mock Service data: Mocked Data . ",
-    "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EC%83%9D%EC%84%B1%20%ED%8C%A8%ED%84%B4%20-%20Creational%20Pattern/monostate_pattern.html#%ED%8C%A8%ED%84%B4-%EA%B0%9C%EC%9A%94",
-    
-    "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EC%83%9D%EC%84%B1%20%ED%8C%A8%ED%84%B4%20-%20Creational%20Pattern/monostate_pattern.html#패턴-개요"
-  },"28": {
-    "doc": "보그 패턴 - Borg Pattern",
-    "title": "보그 패턴 - Borg Pattern",
-    "content": " ",
-    "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EC%83%9D%EC%84%B1%20%ED%8C%A8%ED%84%B4%20-%20Creational%20Pattern/monostate_pattern.html",
-    
-    "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EC%83%9D%EC%84%B1%20%ED%8C%A8%ED%84%B4%20-%20Creational%20Pattern/monostate_pattern.html"
-  },"29": {
-    "doc": "프록시 패턴 - Proxy Pattern",
-    "title": "프록시 패턴 (Proxy Pattern)",
-    "content": " ",
-    "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EA%B5%AC%EC%A1%B0%20%ED%8C%A8%ED%84%B4%20-%20Structural%20Pattern/proxy_pattern.html#%ED%94%84%EB%A1%9D%EC%8B%9C-%ED%8C%A8%ED%84%B4-proxy-pattern",
-    
-    "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EA%B5%AC%EC%A1%B0%20%ED%8C%A8%ED%84%B4%20-%20Structural%20Pattern/proxy_pattern.html#프록시-패턴-proxy-pattern"
   },"30": {
-    "doc": "프록시 패턴 - Proxy Pattern",
-    "title": "패턴 개요",
+    "doc": "객체지향 파이썬 프로그래밍",
+    "title": "객체지향 파이썬 프로그래밍",
     "content": " ",
-    "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EA%B5%AC%EC%A1%B0%20%ED%8C%A8%ED%84%B4%20-%20Structural%20Pattern/proxy_pattern.html#%ED%8C%A8%ED%84%B4-%EA%B0%9C%EC%9A%94",
+    "url": "/docs/%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5_%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5_%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D.html",
     
-    "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EA%B5%AC%EC%A1%B0%20%ED%8C%A8%ED%84%B4%20-%20Structural%20Pattern/proxy_pattern.html#패턴-개요"
+    "relUrl": "/docs/%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5_%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5_%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D.html"
   },"31": {
-    "doc": "프록시 패턴 - Proxy Pattern",
-    "title": "코드 예제1",
-    "content": "Code . class Actor: def __init__(self): self.is_busy = False def occupied(self): self.is_busy = True print(type(self).__name__, \"is occupied with current movie\") def available(self): self.is_busy = False print(type(self).__name__, \"is free for the movie\") def get_status(self): return self.is_busy class Agent: def __init__(self): self.principal = None def work(self): self.actor = Actor() if self.actor.get_status(): self.actor.occupied() else: self.actor.available() agent = Agent() agent.work() . Result . Actor is free for the movie . ",
-    "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EA%B5%AC%EC%A1%B0%20%ED%8C%A8%ED%84%B4%20-%20Structural%20Pattern/proxy_pattern.html#%EC%BD%94%EB%93%9C-%EC%98%88%EC%A0%9C1",
+    "doc": "기본 디자인 원칙",
+    "title": "기본 디자인 원칙",
+    "content": ". | 변하는 부분은 캡슐화 하라Encapsulate What Varies | 상속보다 합성을 우선하라Favor Composition Over Inheritance | 구현이 아닌 인터페이스에 맞춰 프로그래밍하라Program to Interfaces, Not Implementations | 느슨한 결합Loose Coupling | . ",
+    "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EA%B8%B0%EB%B3%B8_%EC%9B%90%EC%B9%99/%EA%B8%B0%EB%B3%B8_%EB%94%94%EC%9E%90%EC%9D%B8_%EC%9B%90%EC%B9%99.html",
     
-    "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EA%B5%AC%EC%A1%B0%20%ED%8C%A8%ED%84%B4%20-%20Structural%20Pattern/proxy_pattern.html#코드-예제1"
+    "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EA%B8%B0%EB%B3%B8_%EC%9B%90%EC%B9%99/%EA%B8%B0%EB%B3%B8_%EB%94%94%EC%9E%90%EC%9D%B8_%EC%9B%90%EC%B9%99.html"
   },"32": {
-    "doc": "프록시 패턴 - Proxy Pattern",
-    "title": "사용 사례",
-    "content": " ",
-    "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EA%B5%AC%EC%A1%B0%20%ED%8C%A8%ED%84%B4%20-%20Structural%20Pattern/proxy_pattern.html#%EC%82%AC%EC%9A%A9-%EC%82%AC%EB%A1%80",
+    "doc": "기본 디자인 원칙",
+    "title": "변하는 부분은 캡슐화 하라",
+    "content": "이 원칙의 핵심 아이디어는 변화가 가장 자주 일어날 가능성이 있는 코드 부분을 분리하여 캡슐화 하는 것이다. 이렇게 하면 변경될 가능성이 있는 요소들로부터 나머지 코드를 보호하는 방어막을 형성하게 되고, 한 부분을 수정하더라도 다른 부분에 영향을 최소화할 수 있다. 장점 . | 유지보수의 용이성Ease of maintenence 변경이 필요할 때 캡슐화된 부분만 수정하면 되므로, 다른 영역에 버그가 발생할 위험이 줄어든다. | 유연성 향상Enhanced flexibility 캡슐화된 구성 요소는 쉽게 교체하거나 확장할 수 있어, 보다 적응력 있는 아키텍쳐를 제공한다. | 가독성 개선Improved readability 변화하는 요소들을 분리함으로써 코드가 보다 체계적이고 이해하기 쉬워진다. | . 필요한 테크닉 . | 다형성Polymorphism | 세터와 게터Getters and Setters | @property Decorator | . 예제 - 다형성을 사용한 캡슐화 예시 . 다음은 각 결제 방식을 별도로 별도의 클래스로 캡슐화 하는 예시이다. class PaymentBase: def __init__(self, amount: int): self.amount = amount def process_payment(self): pass class CreditCard(PaymentBase): def process_payment(self): msg = f\"Credit card payment: {self.amount}\" print(msg) class PayPal(PaymentBase): def process_payment(self): msg = f\"Paypal payment: {self.amount}\" print(msg) if __name__ == \"__main__\": payments = [CreditCard(100), PayPal(200)] for payment in payments: payment.process_payment() . Credit card payment: 100 Paypal payment: 200 . | 각 결제 방식을 별도의 클래스로 분리하여 캡슐화 | PaymentBase 라는 기본 클래스에서 process_payment() 메서드를 정의하고, 이를 상속받은 CreditCard 와 Paypal 클래스에서 구체적인 결제 로직을 구현 | 다형성을 사용하여 여러 결제 객체를 동일한 인터페이스로 처리할 수 있어, 결제 방식이 변경되더라도 핵심 로직에는 영향을 주지 않음 | . 예제 - @property 를 활용한 캡슐화 . class Circle: def __init__(self, radius: int): self._radius: int = radius @property def radius(self): return self._radius @radius.setter def radius(self, value: int): if value &lt; 0: raise ValueError(\"Radius cannot be negative!\") self._radius = value if __name__ == \"__main__\": circle = Circle(10) print(f\"Initial radius: {circle.radius}\") circle.radius = 15 print(f\"New radius: {circle.radius}\") . Initial radius: 10 New radius: 15 . | 내부 속성 보호: 실제 데이터는 _radius에 저장되며, 외부에는 radius 속성을 통해 노출되어 직접적인 접근을 막음. | 검증 로직 포함: setter 메서드에서 반지름 값이 음수가 될 경우 예외를 발생시켜, 잘못된 값이 설정되지 않도록 보장함. | 유연한 코드 유지: _radius 검증 로직이 변경되더라도 외부 인터페이스는 그대로 유지되므로, 클래스 사용자에게 영향을 주지 않음. | . ",
+    "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EA%B8%B0%EB%B3%B8_%EC%9B%90%EC%B9%99/%EA%B8%B0%EB%B3%B8_%EB%94%94%EC%9E%90%EC%9D%B8_%EC%9B%90%EC%B9%99.html#%EB%B3%80%ED%95%98%EB%8A%94-%EB%B6%80%EB%B6%84%EC%9D%80-%EC%BA%A1%EC%8A%90%ED%99%94-%ED%95%98%EB%9D%BC",
     
-    "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EA%B5%AC%EC%A1%B0%20%ED%8C%A8%ED%84%B4%20-%20Structural%20Pattern/proxy_pattern.html#사용-사례"
+    "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EA%B8%B0%EB%B3%B8_%EC%9B%90%EC%B9%99/%EA%B8%B0%EB%B3%B8_%EB%94%94%EC%9E%90%EC%9D%B8_%EC%9B%90%EC%B9%99.html#변하는-부분은-캡슐화-하라"
   },"33": {
-    "doc": "프록시 패턴 - Proxy Pattern",
-    "title": "프록시 패턴 - Proxy Pattern",
-    "content": " ",
-    "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EA%B5%AC%EC%A1%B0%20%ED%8C%A8%ED%84%B4%20-%20Structural%20Pattern/proxy_pattern.html",
+    "doc": "기본 디자인 원칙",
+    "title": "상속보다 합성을 우선하라",
+    "content": "상속은 장점이 있지만, 너무 밀접하게 결합된 코드가 되어 유지보수나 확장이 어려워질 수 있다. 이런 문제를 해결하기 위해 합성Composition 을 우선하라는 원칙이 등장했다. 장점 . | 유연성Flexibility 합성을 사용하면 런타임 시에 객체의 행동을 변경할 수 있어 코드가 더욱 적응력 있게 된다. | 재사용성Reusability 더 작고 단순한 객체들을 애플리케이션의 다양한 부분에서 재사용할 수 있어 코드 재사용성이 증대된다. | 유지보수 용이성Ease of maintenance 합성을 사용하면 전체 시스템에 영향을 주지 않고 개별 구성 요소를 쉽게 교체하거나 업데이트할 수 있어, 경계 효과border effect를 피할 수 있다. | . 필요한 테크닉 . | has-a | . 예제 - 엔진을 사용하여 자동차 구성하기 . 파이썬에서는 클래스 내부에 다른 클래스의 인스턴스를 포함시켜 합성을 구현할 수 있다. 다음은 Engine 클래스를 포함하는 Car 클래스이다. class Engine: def start(self): print(\"Engine started\") class Car: def __init__(self): self.engine = Engine() def start(self): self.engine.start() print(\"Car started\") if __name__ == '__main__': my_car = Car() my_car.start() . Engine started Car started . | Car 클래스 초기화에서 Engine 인스턴스를 생성하고, start() 메서드에서 엔진의 start() 메서드를 호출한 후 자동차 시작 메시지를 출력했다. | 엔진을 다른 종류로 교체할 수 있어, Car 클새스 자체를 수정하지 않고도 구성 요소를 유연하게 변경 가능하다. | . ",
+    "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EA%B8%B0%EB%B3%B8_%EC%9B%90%EC%B9%99/%EA%B8%B0%EB%B3%B8_%EB%94%94%EC%9E%90%EC%9D%B8_%EC%9B%90%EC%B9%99.html#%EC%83%81%EC%86%8D%EB%B3%B4%EB%8B%A4-%ED%95%A9%EC%84%B1%EC%9D%84-%EC%9A%B0%EC%84%A0%ED%95%98%EB%9D%BC",
     
-    "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EA%B5%AC%EC%A1%B0%20%ED%8C%A8%ED%84%B4%20-%20Structural%20Pattern/proxy_pattern.html"
+    "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EA%B8%B0%EB%B3%B8_%EC%9B%90%EC%B9%99/%EA%B8%B0%EB%B3%B8_%EB%94%94%EC%9E%90%EC%9D%B8_%EC%9B%90%EC%B9%99.html#상속보다-합성을-우선하라"
   },"34": {
-    "doc": "싱글톤 패턴 - Singleton Pattern",
-    "title": "싱글톤 패턴 (Singleton Pattern)",
-    "content": " ",
-    "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EC%83%9D%EC%84%B1%20%ED%8C%A8%ED%84%B4%20-%20Creational%20Pattern/singleton_pattern.html#%EC%8B%B1%EA%B8%80%ED%86%A4-%ED%8C%A8%ED%84%B4-singleton-pattern",
+    "doc": "기본 디자인 원칙",
+    "title": "구현이 아닌 인터페이스에 맞춰 프로그래밍하라",
+    "content": "소프트웨어 설계에서는 기능이 어떻게 구현되는지에 집착하기 쉽다. 하지만 구현 세부사항에 너무 집중하면 코드가 서로 밀접하게 결합되어 수정하기 어려워진다. 이 문제에 대한 해결책으로 “구현이 아닌 인터페이스에 맞춰 프로그래밍하라” 원칙이 제시된다. 인터페이스는 클래스에 대해 반드시 구현해야 하는 메서드 집합이라는 계약을 정의한다. 이 원칙은 구체적인 클래스 대신 인터페이스를 기준으로 코드를 작성하도록 권장한다. 이를 통해 필요한 기능을 제공하는 특정 클래스에 의존하지 않게 되어, 나중에 구현을 교체하거나 확장할 때 전체 시스템에 미치는 영향을 최소화할 수 있다. 장점 . | 유연성Flexibility 사용되는 코드를 수정하지 않고도 다양한 구현체 간에 쉽게 전환할 수 있다. | 유지보수성Maintainability 특정 구현체에 종속되지 않으므로 구성 요소를 업데이트하거나 교체하기가 용이하다. | 테스트 용이성Testability 인터페이스를 모의mock하여 단위 테스트를 쉽게 작성할 수 있다. | . 필요한 테크닉 . | Abstract base classes (ABCs) | protocols | . Abstract base classes (ABCs) . 파이썬의 abc 모듈에서 제공하는 ABCs 를 사용하면, 모든 구체적인 서브클래스가 반드시 구현해야 하는 추상 메서드를 정의할 수 있다. 아래 코드는 이 개념에 대한 적용 예제이다. from abc import ABC, abstractmethod class MyInterface(ABC): @abstractmethod def do_somthing(self, param: str): pass class MyClass(MyInterface): def do_somthing(self, param: str): print(f\"Doing something with: '{param}'\") MyClass().do_somthing('some param') . Doing something with: 'some param' . Protocols . typing 모듈의 Protocols 는 실제 상속 관계와 상관없이 객체가 특정 속성이나 메서드를 가지고 있다면 유효한 것으로 간주하는 구조적 덕 타이핑structural duck typing을 제공한다. 전통적인 덕 타이핑에서는 타입 호환성이 런타임에 결정되지만, 구조적 덕 타이핑을 사용하면 컴파일 타임에 타입 검사가 가능해진다. 이를 통해 코드가 실행되기 전에 타입 오류를 미리 잡아낼 수 있어, 프로그램의 견고함과 디버깅 용이성이 크게 향상된다. Protocols 의 핵심 장점은 객체가 무엇을 할 수 있는지에 초점을 맞춘다는 점이다. 어떤 객체가 오리처럼 걷고 오리처럼 꽥꽥거린다면, 실제 상속 관계에 상관없이 그 객체는 오리로 간주된다. 이는 객체의 행동이 실제 타입보다 중요한 파이썬과 같은 동적 타이핑 언어에서 특히 유용하다. 예를 들어, draw 메서드를 요구하는 Drawable 프로토콜을 정의할 수 있다. 이 경우, draw 메서드를 구현하는 모든 클래스는 명시적으로 해당 프로토콜을 상속받지 않더라도 암묵적으로 프로토콜을 만족하게 된다. 만약, fly 메서드를 요구하는 Flyer 라는 Protocol 이 필요하다고 가정하면, 다음과 같이 정의할 수 있다. from typing import Protocol class Flyer(Protocol): def fly(self) -&gt; None: ... 이렇게 하면, fly 메서드를 가진 모든 클래스는 명시적으로 Flyer 를 상속하지 않더라도 Flyer 로 간주된다. 이는 보다 일반적이고 재사용 가능한 코드를 작성할 수 있게 해주며, 앞서 논의한 “상속보다 합성을 선호하라” 원칙과도 일맥상통하다. 예제 - ABC 를 사용한 다양한 유형의 로거 . from abc import ABC, abstractmethod class Logger(ABC): @abstractmethod def log(self, message: str): pass class ConsoleLogger(Logger): def log(self, message: str): print(f'Console: {message}') class FileLogger(Logger): def log(self, message: str): with open('log.txt', 'a') as f: f.write(f\"File: {message}\\n\") def log_message(logger: Logger, message: str): logger.log(message) if __name__ == '__main__': log_message(ConsoleLogger(), 'A Console log.') log_message(FileLogger(), 'A file log.') . Console: A console log. 생성된 log.txt 파일을 열어보면 아래와 같은 내용이 기록된다. File: A file log. | log_message 함수를 통해 로깅 매커니즘을 손쉽게 전환할 수 있으며, 함수 자체의 코드는 변경할 필요가 없다. | . 예제 - Protocol 를 사용한 다양한 타입의 로거 . from typing import Protocol class Logger(Protocol): def log(self, message: str): ... class ConsoleLogger: def log(self, message: str): print(f'Console: {message}') class FileLogger: def log(self, message: str): with open('log.txt', 'a') as f: f.write(f'File: {message}\\n') def log_message(logger: Logger, message: str): logger.log(message) if __name__ == '__main__': log_message(ConsoleLogger(), \"A console log.\") log_message(FileLogger(), 'A file log.') . Console: A console log. ABC 를 사용했을 때와 마찬가지로 log.txt 파일에는 다음의 내용이 추가된다. File: A file log. ",
+    "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EA%B8%B0%EB%B3%B8_%EC%9B%90%EC%B9%99/%EA%B8%B0%EB%B3%B8_%EB%94%94%EC%9E%90%EC%9D%B8_%EC%9B%90%EC%B9%99.html#%EA%B5%AC%ED%98%84%EC%9D%B4-%EC%95%84%EB%8B%8C-%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4%EC%97%90-%EB%A7%9E%EC%B6%B0-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D%ED%95%98%EB%9D%BC",
     
-    "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EC%83%9D%EC%84%B1%20%ED%8C%A8%ED%84%B4%20-%20Creational%20Pattern/singleton_pattern.html#싱글톤-패턴-singleton-pattern"
+    "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EA%B8%B0%EB%B3%B8_%EC%9B%90%EC%B9%99/%EA%B8%B0%EB%B3%B8_%EB%94%94%EC%9E%90%EC%9D%B8_%EC%9B%90%EC%B9%99.html#구현이-아닌-인터페이스에-맞춰-프로그래밍하라"
   },"35": {
-    "doc": "싱글톤 패턴 - Singleton Pattern",
-    "title": "패턴 개요",
-    "content": ". | 클래스에 대한 단일 객체 생성 | 전역 객체 제공 | 공유된 리소스에 대한 동시 접근 제어 (충돌 방지) | . ",
-    "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EC%83%9D%EC%84%B1%20%ED%8C%A8%ED%84%B4%20-%20Creational%20Pattern/singleton_pattern.html#%ED%8C%A8%ED%84%B4-%EA%B0%9C%EC%9A%94",
+    "doc": "기본 디자인 원칙",
+    "title": "느슨한 결합",
+    "content": "소프트웨어의 복잡성이 증가함에 따라, 구성 요소 간의 관계가 뒤얽히기 쉬워져 전체 시스템을 이해하고 유지보수하며 확장하기 어려워진다. 느슨한 결합loose coupling 원칙은 이러한 문제를 완화하는 데 목적이 있다. 느슨한 결합은 프로그램의 서로 다른 부분 간의 의존성을 최소화하는 것을 의미한다. 느슨하게 결합된 시스템에서는 구성 요소들이 독립적으로 존재하며, 명확하게 정의된 인터페이스를 통해 상호작용하기 때문에 한 부분을 변경해도 다른 부분에 미치는 영향을 최소화할 수 있다. 장점 . | 유지보수성Maintainability 의존성이 적어 개별 구성 요소를 업데이트하거나 교체하기가 쉬워진다. | 확장성Extensibility 새로운 기능이나 구성 요소를 시스템에 쉽게 추가할 수 있다. | 테스트 용이성Testability 독립적인 구성 요소들은 개별적으로 테스트하기 용이하여 전체 소프트웨어 품질을 향상시킨다. | . 필요한 테크닉 . | 의존성 주입Dependency injection | 옵저버 패턴Observer Pattern | . 예제 - 메시지 서비스 . class MessageService: def __init__(self, sender): self.sender = sender def send_message(self, message: str): self.sender.send(message) class EmailSender: def send(self, message: str): print(f\"Sending email: {message}\") class SMSSender: def send(self, message: str): print(f\"Sending SMS: {message}\") if __name__ == \"__main__\": email_service = MessageService(EmailSender()) email_service.send_message(\"Hello via Email\") sms_service = MessageService(SMSSender()) sms_service.send_message(\"Hello via SMS\") . Sending email: Hello via Email Sending SMS: Hello via SMS . | 이 예제에서는 MessageService 가 EmailSender 와 SMSSender 와 느슨하게 결합되어 있다. 의존성 주입을 통해 MessageService 클래스 자체를 수정하지 않고도 다양한 전송 매커니즘을 쉽게 전환할 수 있다. | MessageService 가 직접 전송 방식을 구현하지 않고, 외부에서 주입받은 sender 객체를 이용하는 덕분에, 새로운 전송 매커니즘을 추가하거나 기존 매커니즘을 교체하는 것이 매우 용이하다. 이렇게 하면 각 구성 요소의 독립성이 보장되어 유지보수와 확장이 한결 수월해진다. | . ",
+    "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EA%B8%B0%EB%B3%B8_%EC%9B%90%EC%B9%99/%EA%B8%B0%EB%B3%B8_%EB%94%94%EC%9E%90%EC%9D%B8_%EC%9B%90%EC%B9%99.html#%EB%8A%90%EC%8A%A8%ED%95%9C-%EA%B2%B0%ED%95%A9",
     
-    "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EC%83%9D%EC%84%B1%20%ED%8C%A8%ED%84%B4%20-%20Creational%20Pattern/singleton_pattern.html#패턴-개요"
+    "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EA%B8%B0%EB%B3%B8_%EC%9B%90%EC%B9%99/%EA%B8%B0%EB%B3%B8_%EB%94%94%EC%9E%90%EC%9D%B8_%EC%9B%90%EC%B9%99.html#느슨한-결합"
   },"36": {
-    "doc": "싱글톤 패턴 - Singleton Pattern",
-    "title": "파이썬 모듈과 비교",
-    "content": "파이썬 모듈은 기본적으로 싱글톤이다. | 파이썬 모듈이 임포트 되었는지 확인 | 이미 임포트 된 경우, 해당 모듈의 객체를 반환한다. | 임포트되지 않은 경우 임포트 후 초기화 한다. | 모듈은 인포트와 동시에 초기화된다. | 모듈을 다시 임포트하면 초기화되지 않는다. | . ",
-    "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EC%83%9D%EC%84%B1%20%ED%8C%A8%ED%84%B4%20-%20Creational%20Pattern/singleton_pattern.html#%ED%8C%8C%EC%9D%B4%EC%8D%AC-%EB%AA%A8%EB%93%88%EA%B3%BC-%EB%B9%84%EA%B5%90",
+    "doc": "기본 원칙",
+    "title": "기본 원칙",
+    "content": " ",
+    "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EA%B8%B0%EB%B3%B8_%EC%9B%90%EC%B9%99/%EA%B8%B0%EB%B3%B8_%EC%9B%90%EC%B9%99.html",
     
-    "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EC%83%9D%EC%84%B1%20%ED%8C%A8%ED%84%B4%20-%20Creational%20Pattern/singleton_pattern.html#파이썬-모듈과-비교"
+    "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EA%B8%B0%EB%B3%B8_%EC%9B%90%EC%B9%99/%EA%B8%B0%EB%B3%B8_%EC%9B%90%EC%B9%99.html"
   },"37": {
-    "doc": "싱글톤 패턴 - Singleton Pattern",
-    "title": "코드 예제1 - __new__ 메소드 오버라이딩",
-    "content": "Code . # 일반 빈 클래스 class MyClass: pass c0 = MyClass() c1 = MyClass() print(c0 is c1) class Singleton: def __new__(cls): if not hasattr(cls, 'instance'): # 클래스에 instance 속성이 있는지 확인 # 인스턴스가 없으면 __new__ 메소드를 오버라이드 해 객체를 생성한다. cls.instance = super(Singleton, cls).__new__(cls) return cls.instance # 이미 객체가 생성된 경우 해당 인스턴스를 반환한다. s0 = Singleton() s1 = Singleton() print(s0 is s1) . Result . False True . ",
-    "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EC%83%9D%EC%84%B1%20%ED%8C%A8%ED%84%B4%20-%20Creational%20Pattern/singleton_pattern.html#%EC%BD%94%EB%93%9C-%EC%98%88%EC%A0%9C1---__new__-%EB%A9%94%EC%86%8C%EB%93%9C-%EC%98%A4%EB%B2%84%EB%9D%BC%EC%9D%B4%EB%94%A9",
-    
-    "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EC%83%9D%EC%84%B1%20%ED%8C%A8%ED%84%B4%20-%20Creational%20Pattern/singleton_pattern.html#코드-예제1---__new__-메소드-오버라이딩"
-  },"38": {
-    "doc": "싱글톤 패턴 - Singleton Pattern",
-    "title": "코드 예제2 - 게으른 초기화 (Lazy instantiation)",
-    "content": "Code . # Lazy instantiation class Singleton: __instance = None def __init__(self): if Singleton.__instance is None: print(\"__init__ method called..\") else: print(\"Instance already created:\", self.get_instance()) # get_instance 메소드 호출 시에만 인스턴스 생성 @classmethod def get_instance(cls): if not cls.__instance: cls.__instance = Singleton() return cls.__instance s0 = Singleton() # 클래스를 초기화했지만 객체는 생성하지 않는다. s1 = Singleton.get_instance() # 객체 생성 s2 = Singleton.get_instance() s3 = Singleton() print(s0 is s1) print(s1 is s2) print(s2 is s3) . Result . __init__ method called.. __init__ method called.. Instance already created: &lt;__main__.Singleton object at 0x0000017B1AE17B90&gt; False True False . Code . import test_module import test_module as tm print(test_module is tm) . Result . True . ",
-    "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EC%83%9D%EC%84%B1%20%ED%8C%A8%ED%84%B4%20-%20Creational%20Pattern/singleton_pattern.html#%EC%BD%94%EB%93%9C-%EC%98%88%EC%A0%9C2---%EA%B2%8C%EC%9C%BC%EB%A5%B8-%EC%B4%88%EA%B8%B0%ED%99%94-lazy-instantiation",
-    
-    "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EC%83%9D%EC%84%B1%20%ED%8C%A8%ED%84%B4%20-%20Creational%20Pattern/singleton_pattern.html#코드-예제2---게으른-초기화-lazy-instantiation"
-  },"39": {
-    "doc": "싱글톤 패턴 - Singleton Pattern",
-    "title": "코드 예제3 - 메타클래스를 활용하는 방법",
-    "content": "Code . class MetaSingleton(type): _instances = {} def __call__(cls, *args, **kwargs): if cls not in cls._instances: cls._instances[cls] = super( MetaSingleton, cls ).__call__(*args, **kwargs) return cls._instances[cls] class Logger(metaclass=MetaSingleton): pass logger0 = Logger() logger1 = Logger() print(logger0 is logger1) . Result . True . ",
-    "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EC%83%9D%EC%84%B1%20%ED%8C%A8%ED%84%B4%20-%20Creational%20Pattern/singleton_pattern.html#%EC%BD%94%EB%93%9C-%EC%98%88%EC%A0%9C3---%EB%A9%94%ED%83%80%ED%81%B4%EB%9E%98%EC%8A%A4%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%98%EB%8A%94-%EB%B0%A9%EB%B2%95",
-    
-    "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EC%83%9D%EC%84%B1%20%ED%8C%A8%ED%84%B4%20-%20Creational%20Pattern/singleton_pattern.html#코드-예제3---메타클래스를-활용하는-방법"
-  },"40": {
-    "doc": "싱글톤 패턴 - Singleton Pattern",
-    "title": "코드 예제4",
-    "content": "Code . import sqlite3 class MetaSingleton(type): _instances = {} def __call__(cls, *args, **kwargs): if cls not in cls._instances: cls._instances[cls] = super( MetaSingleton, cls ).__call__(*args, **kwargs) return cls._instances[cls] class Database(metaclass=MetaSingleton): connection = None def connect(self): if self.connection is None: self.connection = sqlite3.connect(\"db.sqlite3\") self.cursorobj = self.connection.cursor() return self.cursorobj db0 = Database().connect() db1 = Database().connect() print(db0 is db1) . Result . True . ",
-    "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EC%83%9D%EC%84%B1%20%ED%8C%A8%ED%84%B4%20-%20Creational%20Pattern/singleton_pattern.html#%EC%BD%94%EB%93%9C-%EC%98%88%EC%A0%9C4",
-    
-    "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EC%83%9D%EC%84%B1%20%ED%8C%A8%ED%84%B4%20-%20Creational%20Pattern/singleton_pattern.html#코드-예제4"
-  },"41": {
-    "doc": "싱글톤 패턴 - Singleton Pattern",
-    "title": "코드 예제5",
-    "content": "Code . class MetaSingleton(type): _instances = {} def __call__(cls, *args, **kwargs): if cls not in cls._instances: cls._instances[cls] = super( MetaSingleton, cls ).__call__(*args, **kwargs) return cls._instances[cls] class HealthCheck(metaclass=MetaSingleton): def __init__(self): self._servers = [] def add_server(self): self._servers.append(\"Server 1\") self._servers.append(\"Server 2\") self._servers.append(\"Server 3\") self._servers.append(\"Server 4\") def change_server(self): self._servers.pop() self._servers.append(\"Server 5\") health0 = HealthCheck() health1 = HealthCheck() health0.add_server() print(\"Schedule health check for servers (1)..\") for i in range(4): print(\"Checking \", health0._servers[i]) health1.change_server() print(\"Schedule health check for servers (2)..\") for i in range(4): print(\"Checking \", health1._servers[i]) . Result . Schedule health check for servers (1).. Checking Server 1 Checking Server 2 Checking Server 3 Checking Server 4 Schedule health check for servers (2).. Checking Server 1 Checking Server 2 Checking Server 3 Checking Server 5 . ",
-    "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EC%83%9D%EC%84%B1%20%ED%8C%A8%ED%84%B4%20-%20Creational%20Pattern/singleton_pattern.html#%EC%BD%94%EB%93%9C-%EC%98%88%EC%A0%9C5",
-    
-    "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EC%83%9D%EC%84%B1%20%ED%8C%A8%ED%84%B4%20-%20Creational%20Pattern/singleton_pattern.html#코드-예제5"
-  },"42": {
-    "doc": "싱글톤 패턴 - Singleton Pattern",
-    "title": "싱글톤 패턴 - Singleton Pattern",
-    "content": " ",
-    "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EC%83%9D%EC%84%B1%20%ED%8C%A8%ED%84%B4%20-%20Creational%20Pattern/singleton_pattern.html",
-    
-    "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EC%83%9D%EC%84%B1%20%ED%8C%A8%ED%84%B4%20-%20Creational%20Pattern/singleton_pattern.html"
-  },"43": {
-    "doc": "구조 패턴 - Structural Pattern",
-    "title": "구조 패턴 - Structural Pattern",
-    "content": " ",
-    "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EA%B5%AC%EC%A1%B0%20%ED%8C%A8%ED%84%B4%20-%20Structural%20Pattern/structural_pattern.html",
-    
-    "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%EA%B5%AC%EC%A1%B0%20%ED%8C%A8%ED%84%B4%20-%20Structural%20Pattern/structural_pattern.html"
-  },"44": {
     "doc": "데이터의 연산",
     "title": "데이터의 연산",
     "content": " ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%9D%98_%EC%97%B0%EC%82%B0.html",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%9D%98_%EC%97%B0%EC%82%B0.html"
-  },"45": {
+  },"38": {
     "doc": "데이터의 연산",
     "title": "개요",
     "content": "이번 섹션에서는 데이터를 다루는 데 필요한 다양한 연산자와 기능을 소개한다. ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%9D%98_%EC%97%B0%EC%82%B0.html#%EA%B0%9C%EC%9A%94",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%9D%98_%EC%97%B0%EC%82%B0.html#개요"
-  },"46": {
+  },"39": {
     "doc": "데이터의 연산",
     "title": "산술 연산자 (Arithmetic operators)",
-    "content": "산술연산자는 수학적인 연산을 수행하기 위해 사용되는 기호이다. 파이썬의 산술연산자와 기능을 아래 표에 정리해 보았다. | 연산자 | 의미 | 예시 | 결과 | . | + | 덧셈 | 5 + 2 | 7 | . | - | 뺄셈 | 5 - 2 | 3 | . | * | 곱셈 | 5 * 2 | 10 | . | / | 나눗셈 | 5 / 2 | 2.5 | . | // | 몫 | 5 // 2 | 2 | . | % | 나머지 | 5 % 2 | 1 | . | ** | 거듭제곱 | 5 ** 2 | 25 | . 예제 - 문자열의 연산 . 산술 연산은 숫자에만 사용 가능한 것은 아니다. 아래 예제는 문자열과 문자열의 덧셈, 문자열과 숫자를 곱셈하는 예제이다. Code hello = \"안녕하세요\" some_number = 3 print(hello + hello + hello) print(hello * some_number) print(some_number * hello) . Result 안녕하세요안녕하세요안녕하세요 안녕하세요안녕하세요안녕하세요 안녕하세요안녕하세요안녕하세요 . ",
+    "content": "산술연산자는 수학적인 연산을 수행하기 위해 사용되는 기호이다. 파이썬의 산술연산자와 기능을 아래 표에 정리해 보았다. | 연산자 | 의미 | 예시 | 결과 | . | + | 덧셈 | 5 + 2 | 7 | . | - | 뺄셈 | 5 - 2 | 3 | . | * | 곱셈 | 5 * 2 | 10 | . | / | 나눗셈 | 5 / 2 | 2.5 | . | // | 몫 | 5 // 2 | 2 | . | % | 나머지 | 5 % 2 | 1 | . | ** | 거듭제곱 | 5 ** 2 | 25 | . 예제 - 문자열의 연산 . 산술 연산은 숫자에만 사용 가능한 것은 아니다. 아래 예제는 문자열과 문자열의 덧셈, 문자열과 숫자를 곱셈하는 예제이다. Code . hello = \"안녕하세요\" some_number = 3 print(hello + hello + hello) print(hello * some_number) print(some_number * hello) . Result . 안녕하세요안녕하세요안녕하세요 안녕하세요안녕하세요안녕하세요 안녕하세요안녕하세요안녕하세요 . ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%9D%98_%EC%97%B0%EC%82%B0.html#%EC%82%B0%EC%88%A0-%EC%97%B0%EC%82%B0%EC%9E%90-arithmetic-operators",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%9D%98_%EC%97%B0%EC%82%B0.html#산술-연산자-arithmetic-operators"
-  },"47": {
+  },"40": {
     "doc": "데이터의 연산",
     "title": "연산자 우선순위",
     "content": "연산자에는 우선순위가 정해져 있다. 산술 연산자의 경우에 ** 이 가장 높은 우선순위를 가지며, *, /, //, % 가 그 다음으로 높으며, +, - 가 가장 낮은 우선순위를 갖는다. 이 외 연산자에 대한 우선순위는 추가 자료 &gt; 연산자 우선순위 를 참고한다. 복잡한 계산 경우 괄호(())를 사용해 그룹화하여 연산자 우선순위를 조금 더 단순화 할 수 있다. ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%9D%98_%EC%97%B0%EC%82%B0.html#%EC%97%B0%EC%82%B0%EC%9E%90-%EC%9A%B0%EC%84%A0%EC%88%9C%EC%9C%84",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%9D%98_%EC%97%B0%EC%82%B0.html#연산자-우선순위"
-  },"48": {
+  },"41": {
     "doc": "데이터의 연산",
     "title": "복합 연산자 (Augmented assignment)",
     "content": "코드의 간결함을 위해 파이썬은 복합 연산자를 지원한다. 변수 &lt;산술연산자&gt;= 식 형태이며 이는 내부적으로 변수 = 변수 &lt;산술연산자&gt; 식 과 동일한 결과를 낳는다. 단, 좌측의 변수는 사전에 정의 되어 있어야 한다. | 연산자 | 의미 | . | **= | 변수의 값에 우측 값을 거듭제곱한 결과를 변수에 대입한다. | . | *= | 변수의 값에 우측 값을 곱한 결과를 변수에 대입한다. | . | /= | 변수의 값을 우측 값으로 나눈 결과를 변수에 대입한다. | . | //= | 변수의 값을 우측 값으로 나눈 결과의 몫을 변수에 대입한다. | . | %= | 변수의 값을 우측 값으로 나눈 결과의 나머지를 변수에 대입한다. | . | += | 변수의 값에 우측 값을 더한 결과를 변수에 대입한다. | . | -= | 변수의 값에서 우측 값을 뺀 결과를 변수에 대입한다. | . 예제 - 복합 연산자 . Code . x = 3 y = 5 print('연산 전:', x) x *= y # x = x * y 와 같다. print(' 연산 후:', x) . Result . 연산 전: 3 연산 후: 15 . ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%9D%98_%EC%97%B0%EC%82%B0.html#%EB%B3%B5%ED%95%A9-%EC%97%B0%EC%82%B0%EC%9E%90-augmented-assignment",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%9D%98_%EC%97%B0%EC%82%B0.html#복합-연산자-augmented-assignment"
-  },"49": {
+  },"42": {
     "doc": "데이터의 연산",
     "title": "비교 연산자 (Comparison operators)",
     "content": "비교 연산자는 두 값(또는 객체)을 비교한 결과를 불리언 값(True 또는 False) 로 반환한다. 값, 객체의 동일성, 멤버쉽 테스트로 분류할 수 있다. | 표현 | 의미 | 분류 | . | x &lt; y | x 값이 y 값 보다 작으면 True 를 반환 | 값 | . | x &gt; y | x 값이 y 값 보다 크면 True 를 반환 | 값 | . | x == y | x 값이 y 값과 같으면 True 를 반환 | 값 | . | x &gt;= y | x 값이 y 값 보다 크거나 같으면 True 를 반환 | 값 | . | x &lt;= y | x 값이 y 값 보다 작거나 같으면 True 를 반환 | 값 | . | x != y | x 값이 y 값과 다르면 True 를 반환 | 값 | . | x is y | x 와 y 와 동일한 객체이면 True 를 반환 | 객체의 동일성 | . | x is not y | x 와 y 가 동일한 객체가 아니면 True 를 반환 | 객체의 동일성 | . | x in y | y가 반복 가능한(iterable) 객체일 때, x가 그 멤버 중 하나이면 True를 반환한다. | 멤버쉽 테스트 | . | x not in y | y가 반복 가능한(iterable) 객체일 때, x가 그 멤버에 포함되어 있지 않으면 True를 반환한다. | 멤버쉽 테스트 | . 예제 - 비교 연산자 . Code . a = 3 b = 5 print(\"a = 3\\nb = 5\\n\") print(\"a &lt; b:\", a &lt; b) print(\"a &gt; b:\", a &gt; b) print(\"a == b:\", a == b) print(\"0 &lt; a &lt; 100:\", 0 &lt; a &lt; 100) . Result . a = 3 b = 5 a &lt; b: True a &gt; b: False a == b: False 0 &lt; a &lt; 100: True . ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%9D%98_%EC%97%B0%EC%82%B0.html#%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90-comparison-operators",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%9D%98_%EC%97%B0%EC%82%B0.html#비교-연산자-comparison-operators"
-  },"50": {
+  },"43": {
     "doc": "데이터의 연산",
     "title": "논리 연산자 (Boolean operators)",
     "content": "논리 연산자는 피 연산자의 불리언 값을 평가하여, 조건식의 결과를 결정한다. x or y . | x 의 불리언 값이 True 이면 x 를 반환한다. y 는 평가하지 않는다. | x 의 불리언 값이 False 인 경우 y 를 반환한다. | . x and y . | x 의 불리언 값이 False 이면 x 를 반환한다. | x 의 불리언 값이 True 이면 y 를 반환한다. y 는 평가하지 않는다. | . not x . | x 의 불리언 값이 False 이면 True 를 반환한다. | x 의 불리언 값이 True 이면 False 를 반환한다. | . 표현식이나 객체가 불리언 평가될 때의 결과를 확인하려면 bool 함수를 사용할 수 있다. 예를 들어 print(bool(15 &gt; 3)) 은 True 를 출력하고, print(bool(15 &lt; 3)) 은 False 를 출력한다. 예제 - 논리 연산자 (표현식) . Code . a = 0 b = 5 print(a and b) print(a or b) print(not a) . Result . 0 5 True . 예제 - 논리 연산자 (비교연산자 포함) . Code . a = 0 b = 5 print((a == 1) and (a &lt; b)) print((a == 1) or (a &lt; b)) print(not (a == 0)) . Result . False True False . ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%9D%98_%EC%97%B0%EC%82%B0.html#%EB%85%BC%EB%A6%AC-%EC%97%B0%EC%82%B0%EC%9E%90-boolean-operators",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%9D%98_%EC%97%B0%EC%82%B0.html#논리-연산자-boolean-operators"
-  },"51": {
+  },"44": {
     "doc": "데이터의 연산",
     "title": "데이터의 형 변환",
     "content": "자료형을 다른 형태로 변환하는 것을 형 변환(Type conversion)이라고 한다. 명시적 형 변환 . str, int 등과 같은 클래스를 사용해 명시적으로 자료형을 변환할 수 있다. 예제 - 명시적 형 변환 . Code . user_number = input(\"숫자를 입력해 주세요: \") print(user_number + \" * 3 =\", int(user_number) * 3) . Result . 숫자를 입력해 주세요: 100 100 * 3 = 300 . 암묵적 형 변환 . 서로 다른 자료형 간의 연산에서 자동으로 형 변환이 수행될 수 있다. 예를 들어, 정수와 부동 소수점을 연산하게 되면 정수를 자동으로 부동 소수점으로 변환한뒤 계산한다. 예제 - 암묵적 형 변환 . Code . integer = 3 float_point = 5.0 result = integer + float_point print(result) print(type(result)) . Result . 8.0 &lt;class 'float'&gt; . ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%9D%98_%EC%97%B0%EC%82%B0.html#%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%9D%98-%ED%98%95-%EB%B3%80%ED%99%98",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%9D%98_%EC%97%B0%EC%82%B0.html#데이터의-형-변환"
-  },"52": {
+  },"45": {
     "doc": "데이터의 연산",
     "title": "연습문제",
     "content": "연습문제1 . 다음 연산의 결과를 예상해 보십시오. 3 + 2 * -1 ** 2 . 연습문제2 . 터미널에 어떤 결과가 출력될지 예상해 보십시오. a = int(\"10000\") b = int(\"10000\") print(a == b) print(a is b) . 연습문제3 . 터미널에 어떤 결과가 출력될지 예상해 보십시오. a = 0 b = \"3\" if (a == 0) or (a + b): print(a) . 연습문제4 . 사용자로부터 섭씨 온도를 입력받아, 이를 화씨 온도로 변환하는 프로그램을 작성해 보시오. 화씨 온도를 구하는 공식은 다음과 같습니다. 화씨 온도 = (섭씨 온도 * 9/5) + 32 * 섭씨 : celsius * 화씨 : fahrenheit ##### 예시 ##### 섭씨 온도: 44 섭씨 온도 44°C 는 화씨 온도 111.2°F 입니다. ################ . 연습문제5 . 체질량지수(bmi)는 자신의 몸무게(kg)를 키의 제곱(m)으로 나눈 값입니다. 사용자의 몸무게(kg), 키(m) 를 입력받아 체질량지수를 출력하는 프로그램을 만들어 보십시오. ##### 예시 ##### 몸무게(kg) 를 입력하십시오 : 64.3 키(m) 를 입력하십시오 : 1.69 당신의 체질량 지수는 ??? 입니다. ################ 참고 사이트 : https://health.seoulmc.or.kr/healthCareInfo/myBMIPopup.do . ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%9D%98_%EC%97%B0%EC%82%B0.html#%EC%97%B0%EC%8A%B5%EB%AC%B8%EC%A0%9C",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%9D%98_%EC%97%B0%EC%82%B0.html#연습문제"
-  },"53": {
+  },"46": {
     "doc": "데이터의 연산",
     "title": "참고 자료",
     "content": ". | 연산자 우선순위 | 복합 연산자 | 비교 연산자 | 논리 연산자 | . ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%9D%98_%EC%97%B0%EC%82%B0.html#%EC%B0%B8%EA%B3%A0-%EC%9E%90%EB%A3%8C",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%9D%98_%EC%97%B0%EC%82%B0.html#참고-자료"
-  },"54": {
+  },"47": {
     "doc": "문자열",
     "title": "문자열 (String)",
     "content": " ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EB%AC%B8%EC%9E%90%EC%97%B4.html#%EB%AC%B8%EC%9E%90%EC%97%B4-string",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EB%AC%B8%EC%9E%90%EC%97%B4.html#문자열-string"
-  },"55": {
+  },"48": {
     "doc": "문자열",
     "title": "개요",
     "content": "문자열은 문자들이 순서대로 연결되어 있는 구조를 갖는 파이썬 자료형이다. ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EB%AC%B8%EC%9E%90%EC%97%B4.html#%EA%B0%9C%EC%9A%94",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EB%AC%B8%EC%9E%90%EC%97%B4.html#개요"
-  },"56": {
+  },"49": {
     "doc": "문자열",
     "title": "문자열의 표현",
     "content": "작은 따옴표 또는 큰 따옴표 안에 작성된 데이터는 문자열로 취급한다. 예제 - 문자열의 표현 . Code . string0 = '작은 따옴표 사용' string1 = \"큰 따옴표 사용\" print(string0) print(string1) print(\"작은 따옴표 사용(Type):\", type(string0)) print(\"큰 따옴표 사용(Type):\", type(string1)) . Result . 작은 따옴표 사용 큰 따옴표 사용 작은 따옴표 사용(Type): &lt;class 'str'&gt; 큰 따옴표 사용(Type): &lt;class 'str'&gt; . ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EB%AC%B8%EC%9E%90%EC%97%B4.html#%EB%AC%B8%EC%9E%90%EC%97%B4%EC%9D%98-%ED%91%9C%ED%98%84",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EB%AC%B8%EC%9E%90%EC%97%B4.html#문자열의-표현"
-  },"57": {
+  },"50": {
     "doc": "문자열",
     "title": "원시 문자열 (Raw String)",
     "content": "문자열에 백슬래쉬(\\\\)와 같은 특수한 문자를 포함할 때는 이스케이프 시퀀스를 사용해야 한다. 이 것과 관련하여 문자열 입력받기 에서 정리한 바 있다. Windows 에서는 폴더 경로 구분자로 백슬래쉬(\\) 를 사용하므로 이스케이프 시퀀스를 이용해 문자열로 표현하면 가독성이 매우 떨어질 수 있다. 예를 들어 \"C:\\\\Users\\\\user\\\\Documents\\\\Onedrive\\\\문서\\\\002.Work\\\\IT\\\\redhat 문의\" 와 같이 작성해야 한다. 이런 경우 문자열 리터럴 앞에 r 을 붙이면 이스케이프 시퀀스를 무시하고 그대로 표현할 수 있고 가독성 또한 개선된다. 이렇게 문자열 리터럴 앞에 r 을 붙인 것을 원시 문자열(Raw String)이라고 부른다. 예제 - 원시 문자열 . Code . print(\"C:\\\\Users\\\\user\\\\Documents\\\\Onedrive\\\\문서\\\\002.Work\\\\IT\\\\redhat 문의\") print(r\"C:\\Users\\user\\Documents\\Onedrive\\문서\\002.Work\\IT\\redhat 문의\") . Result . C:\\Users\\user\\Documents\\Onedrive\\문서\\002.Work\\IT\\redhat 문의 C:\\Users\\user\\Documents\\Onedrive\\문서\\002.Work\\IT\\redhat 문의 . WARNING 원시 문자열은 백슬래쉬와 그 뒤에 나오는 문자를 이스케이프 시퀀스로 처리하지 않고, 그대로 표현한다. 따라서 문자열 마지막에 백슬래쉬(\\)를 사용하면 종료 따옴표와 충돌하여 문법 에러가 발생한다. 이 문제는 문자열 마지막에 백슬래쉬를 중첩 사용하면 해결된다. ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EB%AC%B8%EC%9E%90%EC%97%B4.html#%EC%9B%90%EC%8B%9C-%EB%AC%B8%EC%9E%90%EC%97%B4-raw-string",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EB%AC%B8%EC%9E%90%EC%97%B4.html#원시-문자열-raw-string"
-  },"58": {
+  },"51": {
     "doc": "문자열",
     "title": "문자열은 대소문자를 구분한다",
     "content": "파이썬의 문자열은 기본적으로 유니코드를 사용하며, 유니코드에서는 영문 대문자, 소문자마다 서로 다른 코드를 부여한다. 따라서 파이썬에서도 문자열의 대소문자를 구분하여 처리한다. 예제 - 유니 코드 . Code . print(\"a\" == \"A\") print(\"a 의 유니코드:\", hex(ord(\"a\"))) print(\"A 의 유니코드:\", hex(ord(\"A\"))) . Result . False a 의 유니코드: 0x61 A 의 유니코드: 0x41 . ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EB%AC%B8%EC%9E%90%EC%97%B4.html#%EB%AC%B8%EC%9E%90%EC%97%B4%EC%9D%80-%EB%8C%80%EC%86%8C%EB%AC%B8%EC%9E%90%EB%A5%BC-%EA%B5%AC%EB%B6%84%ED%95%9C%EB%8B%A4",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EB%AC%B8%EC%9E%90%EC%97%B4.html#문자열은-대소문자를-구분한다"
-  },"59": {
+  },"52": {
     "doc": "문자열",
     "title": "여러줄 출력하기",
-    "content": "애국가 가사를 예시로 print 함수 내에서 여러줄을 출력하는 다양한 방법에 대해서 알아본다. 다음 예제들의 결과는 모두 같다. 동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세 무궁화 삼천리 화려강산 대한사람 대한으로 길이 보전하세 . 예제 - 한 줄에 모두 작성 . Code . print(\"동해물과 백두산이 마르고 닳도록\\n하느님이 보우하사 우리나라 만세\\n무궁화 삼천리 화려강산\\n대한사람 대한으로 길이 보전하세\") . 예제 - 삼중 따옴표를 사용하여 여러 줄에 작성 . Code . print(\"\"\" 동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세 무궁화 삼천리 화려강산 대한사람 대한으로 길이 보전하세 \"\"\") . 예제 - 인접한 문자열 리터럴을 사용하여 여러 줄에 작성성 . Code . print( \"동해물과 백두산이 마르고 닳도록\\n\" \"하느님이 보우하사 우리나라 만세\\n\" \"무궁화 삼천리 화려강산\\n\" \"대한사람 대한으로 길이 보전하세\" ) . NOTE 인접한 문자열 연결은 변수나 표현식에는 사용할 수 없다. 즉, ‘ 작은 따옴표 또는 “ 큰 따옴표에만 가능하다. ",
+    "content": "애국가 가사를 예시로 print 함수 내에서 여러줄을 출력하는 다양한 방법에 대해서 알아본다. 다음 예제들의 결과는 모두 같다. 동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세 무궁화 삼천리 화려강산 대한사람 대한으로 길이 보전하세 . 예제 - 한 줄에 모두 작성 . Code . print(\"동해물과 백두산이 마르고 닳도록\\n하느님이 보우하사 우리나라 만세\\n무궁화 삼천리 화려강산\\n대한사람 대한으로 길이 보전하세\") . 예제 - 삼중 따옴표를 사용하여 여러 줄에 작성 . Code . print(\"\"\" 동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세 무궁화 삼천리 화려강산 대한사람 대한으로 길이 보전하세 \"\"\") . 예제 - 인접한 문자열 리터럴을 사용하여 여러 줄에 작성 . Code . print( \"동해물과 백두산이 마르고 닳도록\\n\" \"하느님이 보우하사 우리나라 만세\\n\" \"무궁화 삼천리 화려강산\\n\" \"대한사람 대한으로 길이 보전하세\" ) . NOTE 인접한 문자열 연결은 변수나 표현식에는 사용할 수 없다. 즉, ‘ 작은 따옴표 또는 “ 큰 따옴표에만 가능하다. ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EB%AC%B8%EC%9E%90%EC%97%B4.html#%EC%97%AC%EB%9F%AC%EC%A4%84-%EC%B6%9C%EB%A0%A5%ED%95%98%EA%B8%B0",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EB%AC%B8%EC%9E%90%EC%97%B4.html#여러줄-출력하기"
-  },"60": {
+  },"53": {
     "doc": "문자열",
     "title": "문자열 리터럴에 변수를 포함시키기",
-    "content": "파이썬에서 문자열에 변수나 표현식을 포함시키는 방법은 세가지가 있다. % 연산자, str.format() 메소드, f-string 가 있으며 f-string 은 % 연산자나 str.format() 연산자에 비해 비교적 최근에 나온 기능으로 최신 파이썬에서 권장되는 방식이다. f-string 은 f 로 시작하는 문자열 리터럴로 중괄호({}) 안에 변수나 표현식을 직접 작성하면 해당 값이 문자열에 삽입되도록 한다. f-string 리터럴 내부에서 중괄호를 사용하려면 중첩({{ 또는 }})하여 사용하면 된다. 변수) name = '방승호' city = '서울' age = 34 ... 결과) 안녕하세요. 저는 서울에 사는 34 살 방승호입니다. 아래 예제들은 위 박스의 공통 변수를 갖고 같은 결과를 출력한다. 예제 - % 연산자 . Code . print(\"안녕하세요.\\n저는 %s에 사는 %d살 %s입니다.\" % (city, age, name)) . 예제 - str.format() . Code . print(\"안녕하세요.\\n저는 {}에 사는 {}살 {}입니다.\".format(city, age, name)) . 예제 - f-string . Code . print(f\"안녕하세요.\\n저는 {city}에 사는 {age}살 {name}입니다.\") . ",
+    "content": "파이썬에서 문자열에 변수나 표현식을 포함시키는 방법은 세가지가 있다. % 연산자, str.format() 메소드, f-string 가 있으며 f-string 은 % 연산자나 str.format() 연산자에 비해 비교적 최근에 나온 기능으로 최신 파이썬에서 권장되는 방식이다. f-string 은 f 로 시작하는 문자열 리터럴로 중괄호({}) 안에 변수나 표현식을 직접 작성하면 해당 값이 문자열에 삽입되도록 한다. f-string 리터럴 내부에서 중괄호를 사용하려면 중첩({{ 또는 }})하여 사용하면 된다. 변수) name = '방승호' city = '서울' age = 34 ... 결과) 안녕하세요. 저는 서울에 사는 34 살 방승호입니다. 아래 예제들은 위 박스의 공통 변수를 갖고 같은 결과를 출력한다. 예제 - 문자열 리터럴에 변수를 포함시키기기 . Code . print(\"안녕하세요.\\n저는 %s에 사는 %d살 %s입니다.\" % (city, age, name)) print(\"안녕하세요.\\n저는 {}에 사는 {}살 {}입니다.\".format(city, age, name)) print(f\"안녕하세요.\\n저는 {city}에 사는 {age}살 {name}입니다.\") # f-string 사용 . ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EB%AC%B8%EC%9E%90%EC%97%B4.html#%EB%AC%B8%EC%9E%90%EC%97%B4-%EB%A6%AC%ED%84%B0%EB%9F%B4%EC%97%90-%EB%B3%80%EC%88%98%EB%A5%BC-%ED%8F%AC%ED%95%A8%EC%8B%9C%ED%82%A4%EA%B8%B0",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EB%AC%B8%EC%9E%90%EC%97%B4.html#문자열-리터럴에-변수를-포함시키기"
-  },"61": {
+  },"54": {
     "doc": "문자열",
     "title": "f-string 의 유용한 기능들",
-    "content": "다음은 f-string 이 제공하는 몇 가지 유용한 기능에 대한 예제이다. 예제 - 날짜 포매팅 . Code . import datetime current_date = datetime.datetime.now() print(f'{current_date:%B %d, %Y}') . Result . February 23, 2025 . 예제 - 표현식 사용 . current_year = 2025 print(f'작년은 {current_year - 1}년 이고, 내년은 {current_year + 1}년 이다.') . 예제 - 폭 조정 . Code . name = '방승호' city = '서울' hobby = '유튜브 감상' header = f\"{'이름':^10}{'주거 지역':^10}{'취미':^10}\" header_line = '=' * 40 contents = f\"{name:^10}{city:^10}{hobby:^10}\" print(header) print(header_line) print(contents) . Result . 이름 주거 지역 취미 ======================================== 방승호 서울 유튜브 감상 . 예제 - 숫자 앞에 패딩 넣기 . Code . file_number = 9 print(f'{file_number:03}') file_numbering += 1 print(f'{file_number:03}') . Result . 009 010 . ",
+    "content": "다음은 f-string 이 제공하는 몇 가지 유용한 기능에 대한 예제이다. 예제 - 날짜 포매팅 . Code . import datetime current_date = datetime.datetime.now() print(f'{current_date:%B %d, %Y}') . Result . February 23, 2025 . 예제 - 표현식 사용 . current_year = 2025 print(f'작년은 {current_year - 1}년 이고, 내년은 {current_year + 1}년 이다.') . 예제 - 폭 조정 . Code . name = '방승호' city = '서울' hobby = '유튜브 감상' header = f\"{'이름':^10}{'주거 지역':^10}{'취미':^10}\" header_line = '=' * 40 contents = f\"{name:^10}{city:^10}{hobby:^10}\" print(header) print(header_line) print(contents) . Result . 이름 주거 지역 취미 ======================================== 방승호 서울 유튜브 감상 . 예제 - 숫자 앞에 패딩 넣기 . Code . file_number = 9 print(f'{file_number:03}') file_numbering += 1 print(f'{file_number:03}') . Result . 009 010 . 예제 - 반올림 . Code . some_number = 3.1 ** 3.1 print(some_number) print(f\"{some_number:.2f}\") . Result . 33.35963197890903 33.36 . ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EB%AC%B8%EC%9E%90%EC%97%B4.html#f-string-%EC%9D%98-%EC%9C%A0%EC%9A%A9%ED%95%9C-%EA%B8%B0%EB%8A%A5%EB%93%A4",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EB%AC%B8%EC%9E%90%EC%97%B4.html#f-string-의-유용한-기능들"
-  },"62": {
+  },"55": {
     "doc": "문자열",
     "title": "문자열에서 특정 문자에 접근하기",
-    "content": " ",
+    "content": "문자열에서 각 문자들은 순서대로 번호가 부여되며, 그 번호를 인덱스(index) 라고 부른다. 인덱스는 특별한 경우가 아니면 0 부터 시작하는게 일반적이며, 문자열 또한 인덱스는 0 부터 시작한다. 인덱스를 사용하여 객체의 요소를 가져오는 방법을 subscripting 이라고 한다. 예제 - 문자열에 접근하기 . 문자열 Python 에서 두번째 문자, 즉 y 에 접근하는 예제이다. &gt;&gt;&gt; \"Python\"[1] 'y' . 음수 인덱스는 -1 부터 시작하고 문자열 끝에서부터 역순으로 번호가 매겨진다. &gt;&gt;&gt; \"Python\"[-1] 'n' &gt;&gt;&gt; \"Python\"[-2] 'o' . 인덱스 범위 밖의 인덱스를 사용하면 IndexError 가 발생한다. &gt;&gt;&gt; \"Python\"[6] Traceback (most recent call last): File \"&lt;stdin&gt;\", line 1, in &lt;module&gt; IndexError: string index out of range . 또한 빈 문자열에 인덱스 접근 시에도 IndexError 가 발생한다. &gt;&gt;&gt; \"\"[0] Traceback (most recent call last): File \"&lt;stdin&gt;\", line 1, in &lt;module&gt; IndexError: string index out of range . ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EB%AC%B8%EC%9E%90%EC%97%B4.html#%EB%AC%B8%EC%9E%90%EC%97%B4%EC%97%90%EC%84%9C-%ED%8A%B9%EC%A0%95-%EB%AC%B8%EC%9E%90%EC%97%90-%EC%A0%91%EA%B7%BC%ED%95%98%EA%B8%B0",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EB%AC%B8%EC%9E%90%EC%97%B4.html#문자열에서-특정-문자에-접근하기"
-  },"63": {
+  },"56": {
     "doc": "문자열",
     "title": "문자열 슬라이싱",
-    "content": " ",
+    "content": "문자열의 일부분을 잘라내어 새로운 문자열을 만들 수 있는데, 이를 슬라이싱이라고 한다. 슬라이싱을 사용하면 문자열에서 특정 범위의 문자들을 쉽게 추출할 수 있다. 문자열[start:end] 형태로 사용하며 끝 인덱스 포함되지 않는다. 예제 - 문자열 슬라이싱 . 아래는 인덱스 2 부터 4 까지 슬라이싱하는 예제이다. 슬라이스에서 끝 인덱스(: 의 오른쪽)는 포함하지 않는다. &gt;&gt;&gt; \"Python\"[2:5] 'tho' . 슬라이스에서 첫 인덱스, 끝 인덱스는 생략 가능하다. &gt;&gt;&gt; \"Python\"[:3] 'Pyt' &gt;&gt;&gt; \"Python\"[3:] 'hon' . ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EB%AC%B8%EC%9E%90%EC%97%B4.html#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%8A%AC%EB%9D%BC%EC%9D%B4%EC%8B%B1",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EB%AC%B8%EC%9E%90%EC%97%B4.html#문자열-슬라이싱"
-  },"64": {
+  },"57": {
     "doc": "문자열",
     "title": "문자열 관련 메소드",
     "content": ". ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EB%AC%B8%EC%9E%90%EC%97%B4.html#%EB%AC%B8%EC%9E%90%EC%97%B4-%EA%B4%80%EB%A0%A8-%EB%A9%94%EC%86%8C%EB%93%9C",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EB%AC%B8%EC%9E%90%EC%97%B4.html#문자열-관련-메소드"
-  },"65": {
+  },"58": {
+    "doc": "문자열",
+    "title": "연습문제",
+    "content": "연습문제1 . python_study = \" pythoN studY \" 변수 python_study 의 출력 결과가 \"PythonStduy\" 가 되도록 바꾸어 보시오. 연습문제2 . ",
+    "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EB%AC%B8%EC%9E%90%EC%97%B4.html#%EC%97%B0%EC%8A%B5%EB%AC%B8%EC%A0%9C",
+    
+    "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EB%AC%B8%EC%9E%90%EC%97%B4.html#연습문제"
+  },"59": {
     "doc": "문자열",
     "title": "참고 자료",
     "content": "f-strings . ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EB%AC%B8%EC%9E%90%EC%97%B4.html#%EC%B0%B8%EA%B3%A0-%EC%9E%90%EB%A3%8C",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EB%AC%B8%EC%9E%90%EC%97%B4.html#참고-자료"
-  },"66": {
+  },"60": {
     "doc": "문자열",
     "title": "문자열",
     "content": " ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EB%AC%B8%EC%9E%90%EC%97%B4.html",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EB%AC%B8%EC%9E%90%EC%97%B4.html"
-  },"67": {
+  },"61": {
     "doc": "문자열 입력받기",
     "title": "문자열 입력받기",
     "content": " ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EC%9E%85%EB%A0%A5%EA%B3%BC_%EC%B6%9C%EB%A0%A5/%EB%AC%B8%EC%9E%90%EC%97%B4_%EC%9E%85%EB%A0%A5%EB%B0%9B%EA%B8%B0.html",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EC%9E%85%EB%A0%A5%EA%B3%BC_%EC%B6%9C%EB%A0%A5/%EB%AC%B8%EC%9E%90%EC%97%B4_%EC%9E%85%EB%A0%A5%EB%B0%9B%EA%B8%B0.html"
-  },"68": {
+  },"62": {
     "doc": "문자열 입력받기",
     "title": "Input 함수 사용해보기",
     "content": "Code . input(\"이름을 입력해주세요: \") . Result . 이름을 입력해주세요: 방승호 . ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EC%9E%85%EB%A0%A5%EA%B3%BC_%EC%B6%9C%EB%A0%A5/%EB%AC%B8%EC%9E%90%EC%97%B4_%EC%9E%85%EB%A0%A5%EB%B0%9B%EA%B8%B0.html#input-%ED%95%A8%EC%88%98-%EC%82%AC%EC%9A%A9%ED%95%B4%EB%B3%B4%EA%B8%B0",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EC%9E%85%EB%A0%A5%EA%B3%BC_%EC%B6%9C%EB%A0%A5/%EB%AC%B8%EC%9E%90%EC%97%B4_%EC%9E%85%EB%A0%A5%EB%B0%9B%EA%B8%B0.html#input-함수-사용해보기"
-  },"69": {
+  },"63": {
     "doc": "문자열 입력받기",
     "title": "입력받은 문자열 합쳐서 출력하기",
     "content": "Code . print(\"저의 이름은 \" + input(\"이름을 입력해주세요: \") + \"입니다.\") . Result . 이름을 입력해주세요: 방승호 저의 이름은 방승호입니다. ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EC%9E%85%EB%A0%A5%EA%B3%BC_%EC%B6%9C%EB%A0%A5/%EB%AC%B8%EC%9E%90%EC%97%B4_%EC%9E%85%EB%A0%A5%EB%B0%9B%EA%B8%B0.html#%EC%9E%85%EB%A0%A5%EB%B0%9B%EC%9D%80-%EB%AC%B8%EC%9E%90%EC%97%B4-%ED%95%A9%EC%B3%90%EC%84%9C-%EC%B6%9C%EB%A0%A5%ED%95%98%EA%B8%B0",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EC%9E%85%EB%A0%A5%EA%B3%BC_%EC%B6%9C%EB%A0%A5/%EB%AC%B8%EC%9E%90%EC%97%B4_%EC%9E%85%EB%A0%A5%EB%B0%9B%EA%B8%B0.html#입력받은-문자열-합쳐서-출력하기"
-  },"70": {
+  },"64": {
     "doc": "문자열 입력받기",
     "title": "문자열에서 탭 / 개행 / 작은따옴표 / 큰따옴표 / 백슬래쉬 사용하기 (Escape sequences)",
     "content": "문자열 안에서 이스케이프 코드로 탭, 개행, 작은따옴표, 큰따옴표, 백슬래쉬를 사용할 수 있다. 이스케이프 시퀀스는 \\ (백슬래쉬) 로 시작하며 아래 예시 코드와 같이 동작한다. Code . # 탭 (\\t) print(\"이스케이프 시퀀스 탭\\t예제 입니다.\") # 개행 (\\n) print(\"이스케이프 시퀀스\\n개행\\n예제 입니다.\") # 작은 따옴표 (') print(\"이스케이프 시퀀스 \\'작은 따옴표\\' 예제 입니다.\") # 큰 따옴표 (\") print(\"이스케이프 시퀀스 \\\"큰 따옴표\\\" 예제 입니다.\") # 백슬래쉬 print(\"이스케이프 시퀀스 \\\\백슬래쉬\\\\ 예제 입니다.\") . Result . 이스케이프 시퀀스 탭 예제 입니다. 이스케이프 시퀀스 개행 예제 입니다. 이스케이프 시퀀스 '작은 따옴표' 예제 입니다. 이스케이프 시퀀스 \"큰 따옴표\" 예제 입니다. 이스케이프 시퀀스 \\백슬래쉬\\ 예제 입니다. ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EC%9E%85%EB%A0%A5%EA%B3%BC_%EC%B6%9C%EB%A0%A5/%EB%AC%B8%EC%9E%90%EC%97%B4_%EC%9E%85%EB%A0%A5%EB%B0%9B%EA%B8%B0.html#%EB%AC%B8%EC%9E%90%EC%97%B4%EC%97%90%EC%84%9C-%ED%83%AD--%EA%B0%9C%ED%96%89--%EC%9E%91%EC%9D%80%EB%94%B0%EC%98%B4%ED%91%9C--%ED%81%B0%EB%94%B0%EC%98%B4%ED%91%9C--%EB%B0%B1%EC%8A%AC%EB%9E%98%EC%89%AC-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0-escape-sequences",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EC%9E%85%EB%A0%A5%EA%B3%BC_%EC%B6%9C%EB%A0%A5/%EB%AC%B8%EC%9E%90%EC%97%B4_%EC%9E%85%EB%A0%A5%EB%B0%9B%EA%B8%B0.html#문자열에서-탭--개행--작은따옴표--큰따옴표--백슬래쉬-사용하기-escape-sequences"
-  },"71": {
+  },"65": {
     "doc": "문자열 입력받기",
     "title": "참조",
     "content": ". | Escape sequences | . ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EC%9E%85%EB%A0%A5%EA%B3%BC_%EC%B6%9C%EB%A0%A5/%EB%AC%B8%EC%9E%90%EC%97%B4_%EC%9E%85%EB%A0%A5%EB%B0%9B%EA%B8%B0.html#%EC%B0%B8%EC%A1%B0",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EC%9E%85%EB%A0%A5%EA%B3%BC_%EC%B6%9C%EB%A0%A5/%EB%AC%B8%EC%9E%90%EC%97%B4_%EC%9E%85%EB%A0%A5%EB%B0%9B%EA%B8%B0.html#참조"
-  },"72": {
+  },"66": {
     "doc": "문자열 출력하기",
     "title": "문자열 출력하기",
     "content": " ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EC%9E%85%EB%A0%A5%EA%B3%BC_%EC%B6%9C%EB%A0%A5/%EB%AC%B8%EC%9E%90%EC%97%B4_%EC%B6%9C%EB%A0%A5%ED%95%98%EA%B8%B0.html",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EC%9E%85%EB%A0%A5%EA%B3%BC_%EC%B6%9C%EB%A0%A5/%EB%AC%B8%EC%9E%90%EC%97%B4_%EC%B6%9C%EB%A0%A5%ED%95%98%EA%B8%B0.html"
-  },"73": {
+  },"67": {
     "doc": "문자열 출력하기",
     "title": "CMD",
     "content": ". | python 프로그램 실행 | print 함수 호출 | 실행 결과 | . ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EC%9E%85%EB%A0%A5%EA%B3%BC_%EC%B6%9C%EB%A0%A5/%EB%AC%B8%EC%9E%90%EC%97%B4_%EC%B6%9C%EB%A0%A5%ED%95%98%EA%B8%B0.html#cmd",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EC%9E%85%EB%A0%A5%EA%B3%BC_%EC%B6%9C%EB%A0%A5/%EB%AC%B8%EC%9E%90%EC%97%B4_%EC%B6%9C%EB%A0%A5%ED%95%98%EA%B8%B0.html#cmd"
-  },"74": {
+  },"68": {
     "doc": "문자열 출력하기",
     "title": "IDLE",
     "content": ". | Windows -&gt; IDLE 검색 -&gt; IDLE (Python …) 실행 | 이 후 CMD [2] 부터와 같음 | . ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EC%9E%85%EB%A0%A5%EA%B3%BC_%EC%B6%9C%EB%A0%A5/%EB%AC%B8%EC%9E%90%EC%97%B4_%EC%B6%9C%EB%A0%A5%ED%95%98%EA%B8%B0.html#idle",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EC%9E%85%EB%A0%A5%EA%B3%BC_%EC%B6%9C%EB%A0%A5/%EB%AC%B8%EC%9E%90%EC%97%B4_%EC%B6%9C%EB%A0%A5%ED%95%98%EA%B8%B0.html#idle"
-  },"75": {
+  },"69": {
     "doc": "문자열 출력하기",
     "title": "Pycharm (IDE)",
     "content": "New Project 클릭 New Project &gt; Pure Python Location 마지막 경로를 ds_python_study 로 변경 후 Create 좌측 네비게이션에 있는 ds_python_study 우클릭 &gt; New &gt; Directory Directory 명을 001_Basic_Input_Output 으로 생성 좌측 네비게이션에 있는 001_Basic_Input_Output 우클릭 &gt; New &gt; File 파일명을 001_문자열_출력하기.py 로 생성 위 캡쳐 처럼 코드 작성 후 ▷ 를 클릭하여 코드 실행 프로그램 하단 터미널에서 코드 실행 결과가 출력된다. ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EC%9E%85%EB%A0%A5%EA%B3%BC_%EC%B6%9C%EB%A0%A5/%EB%AC%B8%EC%9E%90%EC%97%B4_%EC%B6%9C%EB%A0%A5%ED%95%98%EA%B8%B0.html#pycharm-ide",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EC%9E%85%EB%A0%A5%EA%B3%BC_%EC%B6%9C%EB%A0%A5/%EB%AC%B8%EC%9E%90%EC%97%B4_%EC%B6%9C%EB%A0%A5%ED%95%98%EA%B8%B0.html#pycharm-ide"
-  },"76": {
+  },"70": {
     "doc": "문자열 출력하기",
     "title": "기본 함수 사용방법",
     "content": "함수는 특정 작업을 수행하기 위한 코드 모음이다. 함수 이름 뒤에 () 괄호를 붙여 함수를 호출할 수 있다. 함수이름() . () 괄호 안에는 함수 매개변수에 따라 인자를 넣거나 생략할 수 있다. 예를 들어 print 함수의 경우 () 괄호를 비우는 경우 개행이 되고, 인자를 넣으면 print 함수에 의해 처리되어 콘솔 화면에 출력된다. Code . print(\"문장1\") print() print(\"문장2\") . Result . 문장1 문장2 . Pycharm 의 경우 함수의 () 괄호안에 커서를 두고 Ctrl + q 를 입력하면 함수에 대한 도움말(매개변수, 타입 힌트, docstring 등)을 볼 수 있다. ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EC%9E%85%EB%A0%A5%EA%B3%BC_%EC%B6%9C%EB%A0%A5/%EB%AC%B8%EC%9E%90%EC%97%B4_%EC%B6%9C%EB%A0%A5%ED%95%98%EA%B8%B0.html#%EA%B8%B0%EB%B3%B8-%ED%95%A8%EC%88%98-%EC%82%AC%EC%9A%A9%EB%B0%A9%EB%B2%95",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EC%9E%85%EB%A0%A5%EA%B3%BC_%EC%B6%9C%EB%A0%A5/%EB%AC%B8%EC%9E%90%EC%97%B4_%EC%B6%9C%EB%A0%A5%ED%95%98%EA%B8%B0.html#기본-함수-사용방법"
-  },"77": {
-    "doc": "변수와 자료형",
-    "title": "변수와 자료형",
-    "content": " ",
-    "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EB%B3%80%EC%88%98.html",
-    
-    "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EB%B3%80%EC%88%98.html"
-  },"78": {
+  },"71": {
     "doc": "변수 정의하기",
     "title": "변수 정의하기",
     "content": " ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EB%B3%80%EC%88%98_%EC%A0%95%EC%9D%98%ED%95%98%EA%B8%B0.html",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EB%B3%80%EC%88%98_%EC%A0%95%EC%9D%98%ED%95%98%EA%B8%B0.html"
-  },"79": {
+  },"72": {
     "doc": "변수 정의하기",
     "title": "개요",
     "content": "파이썬에서 변수는 값(객체)에 대한 참조 역할을 한다. 변수는 사용하기 전에 미리 어떤 값을 참조할지 정의해야 한다. 예제 - 변수 정의하기 . Code . tomato = \"토마토\" tomato_brix = \"8\" banana = \"바나나\" banana_brix = \"23\" print(tomato + \"의 당도는 평균 \" + tomato_brix + \" brix 입니다.\") print(banana + \"의 당도는 평균 \" + banana_brix + \" brix 입니다.\") . Result . 토마토의 당도는 평균 8 brix 입니다. 바나나의 당도는 평균 23 brix 입니다. 예제 - 한 줄에 여러 변수 정의하기 . 아래 예제는 한 줄에 여러 개의 변수를 정의하는 방법을 보여주며, 이를 언패킹(unpacking)이라고 한다. Code . small_number, large_number = 1, 1_000_000_000 print(\"small_number:\", small_number) print(\"large_number:\", large_number) . Result . small_number: 1 large_number: 1000000000 . 예제 - 정의되지 않은 변수 . 정의되지 않은 변수를 사용하면 NameError가 발생한다. Code . print(my_variable) . Result . Traceback (most recent call last): File \"d:\\pytest.py\", line 1, in &lt;module&gt; print(my_variable) ^^^^^^^^^^^ NameError: name 'my_variable' is not defined . ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EB%B3%80%EC%88%98_%EC%A0%95%EC%9D%98%ED%95%98%EA%B8%B0.html#%EA%B0%9C%EC%9A%94",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EB%B3%80%EC%88%98_%EC%A0%95%EC%9D%98%ED%95%98%EA%B8%B0.html#개요"
-  },"80": {
+  },"73": {
     "doc": "변수 정의하기",
     "title": "변수 이름 짓기",
     "content": "변수 이름 짓기에는 몇 가지 규칙이 있으며, 위반 시 에러가 발생한다. 문법 규칙 . | 영문, 숫자, 밑줄(_)만 사용하며 숫자로 시작하면 안된다. | 변수 이름 사이에 공백이 있으면 안된다. | 파이썬 내장 (built-in) 키워드는 사용할 수 없다. | 대소문자를 구분한다. | . 아래는 변수 이름 관련 규칙 위반 시 발생하는 에러에 대한 몇가지 예제이다. 예제 - 변수 이름 첫 번째 문자가 숫자인 경우 . Code . 0var = 1 . Result . File \"C:\\Users\\ME\\PycharmProjects\\ds_python_study\\003_Variables\\001_변수.py\", line 1 0var = 1 ^ SyntaxError: invalid decimal literal . 예제 - 변수 이름에 특수문자를 사용한 경우 . Code . variable&gt; = 123 . Result . File \"d:\\pytest.py\", line 1 variable&gt; = 123 ^ SyntaxError: invalid syntax . 예제 - 변수 이름을 파이썬 키워드를 사용한 경우 . Code . class = \"High\" . Result . File \"C:\\Users\\ME\\PycharmProjects\\ds_python_study\\003_Variables\\001_변수.py\", line 1 class = High ^ SyntaxError: invalid syntax . 권고 사항 . | 파이썬 내장 변수, 함수, 클래스, 모듈 등은 가급적 사용하면 안된다. | _ 하나로 끝나는 변수는 변수 이름 충돌을 피하기 위해 사용한다. | 변수 이름은 소문자를 사용하고 공백 등 구분이 필요한 경우 _ 를 사용한다. (snake case) | 간결하면서 의미를 알 수 있게 짓는 것이 좋다. un 보다는 username 또는 user_name 이 낫다. | 상수는 모두 대문자로 표기한다. RED = 1 GREEN = 2 BLUE = 3 ORANGE = 4 . | . ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EB%B3%80%EC%88%98_%EC%A0%95%EC%9D%98%ED%95%98%EA%B8%B0.html#%EB%B3%80%EC%88%98-%EC%9D%B4%EB%A6%84-%EC%A7%93%EA%B8%B0",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EB%B3%80%EC%88%98_%EC%A0%95%EC%9D%98%ED%95%98%EA%B8%B0.html#변수-이름-짓기"
-  },"81": {
+  },"74": {
     "doc": "변수 정의하기",
     "title": "연습 문제",
     "content": "연습 문제1 - 변수 교환하기 . a = 3 b = 5 두 변수 a, b 가 참조하는 값을 교환하시오. 연습 문제2 - 자기 소개 하기 . 이름, 사는 곳, 취미를 입력받아 출력하는 프로그램을 만들어 보시오. 예시) 이름: 방승호 사는 곳: 서울 취미: 유튜브 감상 안녕하세요. 제 이름은 방승호입니다. 서울에 살고 있고, 취미는 유튜브 감상입니다. ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EB%B3%80%EC%88%98_%EC%A0%95%EC%9D%98%ED%95%98%EA%B8%B0.html#%EC%97%B0%EC%8A%B5-%EB%AC%B8%EC%A0%9C",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EB%B3%80%EC%88%98_%EC%A0%95%EC%9D%98%ED%95%98%EA%B8%B0.html#연습-문제"
-  },"82": {
+  },"75": {
     "doc": "변수 정의하기",
     "title": "참고 자료",
     "content": ". | PEP8 - 작명 컨벤션 (번역) | . ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EB%B3%80%EC%88%98_%EC%A0%95%EC%9D%98%ED%95%98%EA%B8%B0.html#%EC%B0%B8%EA%B3%A0-%EC%9E%90%EB%A3%8C",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EB%B3%80%EC%88%98_%EC%A0%95%EC%9D%98%ED%95%98%EA%B8%B0.html#참고-자료"
-  },"83": {
-    "doc": "이스케이프 시퀀스",
+  },"76": {
+    "doc": "변수와 자료형",
+    "title": "변수와 자료형",
+    "content": " ",
+    "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EB%B3%80%EC%88%98%EC%99%80_%EC%9E%90%EB%A3%8C%ED%98%95.html",
+    
+    "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EB%B3%80%EC%88%98%EC%99%80_%EC%9E%90%EB%A3%8C%ED%98%95.html"
+  },"77": {
+    "doc": "연산자 우선순위",
     "title": "연산자 우선순위 (Operator precedence)",
     "content": "| Operator | Description | . | \\(expressions...\\),\\[expressions...\\],{key: value...},{expressions...} | Binding or parenthesized expression, list display, dictionary display, set display | . | x[index], x[index:index], x(arguments...), x.attribute | Subscription, slicing, call, attribute reference | . | await x | Await expression | . | ** | Exponentiation | . | +x, -x, ~x | Positive, negative, bitwise NOT | . | *, @, /, //, % | Multiplication, matrix multiplication, division, floor division, remainder | . | +, - | Addition and subtraction | . | &lt;&lt;, &gt;&gt; | Shifts | . | &amp; | Bitwise AND | . | ^ | Bitwise XOR | . | | Bitwise OR | . | in, not in, is, is not, &lt;, &lt;=, &gt;, &gt;=, !=, == | Comparisons, including membership tests and identity tests | . | not x | Boolean NOT | . | and | Boolean AND | . | or | Boolean OR | . | if – else | Conditional expression | . | lambda | Lambda expression | . | := | Assignment expression | . ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EC%B6%94%EA%B0%80_%EC%9E%90%EB%A3%8C/%EC%97%B0%EC%82%B0%EC%9E%90_%EC%9A%B0%EC%84%A0%EC%88%9C%EC%9C%84.html#%EC%97%B0%EC%82%B0%EC%9E%90-%EC%9A%B0%EC%84%A0%EC%88%9C%EC%9C%84-operator-precedence",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EC%B6%94%EA%B0%80_%EC%9E%90%EB%A3%8C/%EC%97%B0%EC%82%B0%EC%9E%90_%EC%9A%B0%EC%84%A0%EC%88%9C%EC%9C%84.html#연산자-우선순위-operator-precedence"
-  },"84": {
-    "doc": "이스케이프 시퀀스",
+  },"78": {
+    "doc": "연산자 우선순위",
     "title": "참조",
     "content": ". | Operator precedence | . ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EC%B6%94%EA%B0%80_%EC%9E%90%EB%A3%8C/%EC%97%B0%EC%82%B0%EC%9E%90_%EC%9A%B0%EC%84%A0%EC%88%9C%EC%9C%84.html#%EC%B0%B8%EC%A1%B0",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EC%B6%94%EA%B0%80_%EC%9E%90%EB%A3%8C/%EC%97%B0%EC%82%B0%EC%9E%90_%EC%9A%B0%EC%84%A0%EC%88%9C%EC%9C%84.html#참조"
-  },"85": {
-    "doc": "이스케이프 시퀀스",
-    "title": "이스케이프 시퀀스",
+  },"79": {
+    "doc": "연산자 우선순위",
+    "title": "연산자 우선순위",
     "content": " ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EC%B6%94%EA%B0%80_%EC%9E%90%EB%A3%8C/%EC%97%B0%EC%82%B0%EC%9E%90_%EC%9A%B0%EC%84%A0%EC%88%9C%EC%9C%84.html",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EC%B6%94%EA%B0%80_%EC%9E%90%EB%A3%8C/%EC%97%B0%EC%82%B0%EC%9E%90_%EC%9A%B0%EC%84%A0%EC%88%9C%EC%9C%84.html"
-  },"86": {
+  },"80": {
     "doc": "유용한 사이트",
     "title": "유용한 사이트",
     "content": " ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EC%B6%94%EA%B0%80_%EC%9E%90%EB%A3%8C/%EC%9C%A0%EC%9A%A9%ED%95%9C_%EC%82%AC%EC%9D%B4%ED%8A%B8.html",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EC%B6%94%EA%B0%80_%EC%9E%90%EB%A3%8C/%EC%9C%A0%EC%9A%A9%ED%95%9C_%EC%82%AC%EC%9D%B4%ED%8A%B8.html"
-  },"87": {
+  },"81": {
     "doc": "유용한 사이트",
     "title": "Table of Contents",
-    "content": ". | 유용한 사이트 . | Table of Contents | 파이썬 공식 홈페이지 | 웹북 | Question | AI | Education | . | . ",
+    "content": ". | 유용한 사이트 . | Table of Contents | 파이썬 공식 홈페이지 | 웹북 | Question | AI | Education | 기타 | . | . ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EC%B6%94%EA%B0%80_%EC%9E%90%EB%A3%8C/%EC%9C%A0%EC%9A%A9%ED%95%9C_%EC%82%AC%EC%9D%B4%ED%8A%B8.html#table-of-contents",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EC%B6%94%EA%B0%80_%EC%9E%90%EB%A3%8C/%EC%9C%A0%EC%9A%A9%ED%95%9C_%EC%82%AC%EC%9D%B4%ED%8A%B8.html#table-of-contents"
-  },"88": {
+  },"82": {
     "doc": "유용한 사이트",
     "title": "파이썬 공식 홈페이지",
     "content": ". | The Python Standard Library | Python Tutorial | PEP8 - Style Guide for Python Code | Python Download | . ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EC%B6%94%EA%B0%80_%EC%9E%90%EB%A3%8C/%EC%9C%A0%EC%9A%A9%ED%95%9C_%EC%82%AC%EC%9D%B4%ED%8A%B8.html#%ED%8C%8C%EC%9D%B4%EC%8D%AC-%EA%B3%B5%EC%8B%9D-%ED%99%88%ED%8E%98%EC%9D%B4%EC%A7%80",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EC%B6%94%EA%B0%80_%EC%9E%90%EB%A3%8C/%EC%9C%A0%EC%9A%A9%ED%95%9C_%EC%82%AC%EC%9D%B4%ED%8A%B8.html#파이썬-공식-홈페이지"
-  },"89": {
+  },"83": {
     "doc": "유용한 사이트",
     "title": "웹북",
     "content": ". | 초보자를 위한 파이썬 300제 | 점프 투 파이썬 | . ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EC%B6%94%EA%B0%80_%EC%9E%90%EB%A3%8C/%EC%9C%A0%EC%9A%A9%ED%95%9C_%EC%82%AC%EC%9D%B4%ED%8A%B8.html#%EC%9B%B9%EB%B6%81",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EC%B6%94%EA%B0%80_%EC%9E%90%EB%A3%8C/%EC%9C%A0%EC%9A%A9%ED%95%9C_%EC%82%AC%EC%9D%B4%ED%8A%B8.html#웹북"
-  },"90": {
+  },"84": {
     "doc": "유용한 사이트",
     "title": "Question",
     "content": ". | Stack Overflow | . ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EC%B6%94%EA%B0%80_%EC%9E%90%EB%A3%8C/%EC%9C%A0%EC%9A%A9%ED%95%9C_%EC%82%AC%EC%9D%B4%ED%8A%B8.html#question",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EC%B6%94%EA%B0%80_%EC%9E%90%EB%A3%8C/%EC%9C%A0%EC%9A%A9%ED%95%9C_%EC%82%AC%EC%9D%B4%ED%8A%B8.html#question"
-  },"91": {
+  },"85": {
     "doc": "유용한 사이트",
     "title": "AI",
     "content": ". | deepseek | . ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EC%B6%94%EA%B0%80_%EC%9E%90%EB%A3%8C/%EC%9C%A0%EC%9A%A9%ED%95%9C_%EC%82%AC%EC%9D%B4%ED%8A%B8.html#ai",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EC%B6%94%EA%B0%80_%EC%9E%90%EB%A3%8C/%EC%9C%A0%EC%9A%A9%ED%95%9C_%EC%82%AC%EC%9D%B4%ED%8A%B8.html#ai"
-  },"92": {
+  },"86": {
     "doc": "유용한 사이트",
     "title": "Education",
     "content": ". | reeborg - 로봇 게임 | . ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EC%B6%94%EA%B0%80_%EC%9E%90%EB%A3%8C/%EC%9C%A0%EC%9A%A9%ED%95%9C_%EC%82%AC%EC%9D%B4%ED%8A%B8.html#education",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EC%B6%94%EA%B0%80_%EC%9E%90%EB%A3%8C/%EC%9C%A0%EC%9A%A9%ED%95%9C_%EC%82%AC%EC%9D%B4%ED%8A%B8.html#education"
-  },"93": {
+  },"87": {
+    "doc": "유용한 사이트",
+    "title": "기타",
+    "content": ". | OS 별 명령어 모음 | . ",
+    "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EC%B6%94%EA%B0%80_%EC%9E%90%EB%A3%8C/%EC%9C%A0%EC%9A%A9%ED%95%9C_%EC%82%AC%EC%9D%B4%ED%8A%B8.html#%EA%B8%B0%ED%83%80",
+    
+    "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EC%B6%94%EA%B0%80_%EC%9E%90%EB%A3%8C/%EC%9C%A0%EC%9A%A9%ED%95%9C_%EC%82%AC%EC%9D%B4%ED%8A%B8.html#기타"
+  },"88": {
     "doc": "이스케이프 시퀀스",
     "title": "이스케이프 시퀀스",
     "content": "| Escape Sequence | Meaning | . | \\&lt;newline&gt; | Backslash and newline ignored | . | \\\\ | Backslash (\\) | . | \\' | Single quote (') | . | \\\" | Double quote (\") | . | \\a | ASCII Bell (BEL) | . | \\b | ASCII Backspace (BS) | . | \\f | ASCII Formfeed (FF) | . | \\n | ASCII Linefeed (LF) | . | \\r | ASCII Carriage Return (CR) | . | \\t | ASCII Horizontal Tab (TAB) | . | \\v | ASCII Vertical Tab (VT) | . | \\ooo | Character with octal value ooo | . | \\xhh | Character with hex value hh | . Escape sequences only recognized in string literals are: . | Escape Sequence | Meaning | . | \\N{name} | Character named name in the Unicode database | . | \\uxxxx | Character with 16-bit hex value xxxx | . | \\Uxxxxxxxx | Character with 32-bit hex value xxxxxxxx | . ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EC%B6%94%EA%B0%80_%EC%9E%90%EB%A3%8C/%EC%9D%B4%EC%8A%A4%EC%BC%80%EC%9D%B4%ED%94%84_%EC%8B%9C%ED%80%80%EC%8A%A4.html",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EC%B6%94%EA%B0%80_%EC%9E%90%EB%A3%8C/%EC%9D%B4%EC%8A%A4%EC%BC%80%EC%9D%B4%ED%94%84_%EC%8B%9C%ED%80%80%EC%8A%A4.html"
-  },"94": {
+  },"89": {
     "doc": "입력과 출력",
     "title": "입력과 출력",
     "content": " ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EC%9E%85%EB%A0%A5%EA%B3%BC_%EC%B6%9C%EB%A0%A5/%EC%9E%85%EB%A0%A5%EA%B3%BC_%EC%B6%9C%EB%A0%A5.html",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EC%9E%85%EB%A0%A5%EA%B3%BC_%EC%B6%9C%EB%A0%A5/%EC%9E%85%EB%A0%A5%EA%B3%BC_%EC%B6%9C%EB%A0%A5.html"
-  },"95": {
+  },"90": {
     "doc": "자료형",
     "title": "자료형",
     "content": " ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EC%9E%90%EB%A3%8C%ED%98%95.html",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EC%9E%90%EB%A3%8C%ED%98%95.html"
-  },"96": {
+  },"91": {
     "doc": "자료형",
     "title": "개요",
     "content": "자료형(Data Type)은 프로그래밍 언어에서 데이터를 저장하고 처리하는 방식과 형태를 정의하는 분류 기준이다. 각 자료형은 데이터가 어떻게 표현되고 연산될지를 결정하는 역할을 한다. ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EC%9E%90%EB%A3%8C%ED%98%95.html#%EA%B0%9C%EC%9A%94",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EC%9E%90%EB%A3%8C%ED%98%95.html#개요"
-  },"97": {
+  },"92": {
     "doc": "자료형",
     "title": "자료형 확인",
     "content": "객체가 어떤 자료형인지 확인하려면 type 함수를 사용하면 된다. 아래 예제 코드는 정수형(integer), 부동소수점(floating_point), 문자열(string), 리스트(list) 형을 출력한다. 예제 - 자료형 확인 . Code . integer = 5 floating_point = 5.0 string = \"Hello\" list_ = [1, 2, 3, 4] print(\"integer = 5\") print(type(integer)) print(\"\\nfloating_point = 5.0\") print(type(floating_point)) print('\\nstring = \"Hello\"') print(type(string)) print('\\nlist_ = [1, 2, 3, 4]') print(type(list_)) . Result . integer = 5 &lt;class 'int'&gt; floating_point = 5.0 &lt;class 'float'&gt; string = \"Hello\" &lt;class 'str'&gt;** list_ = [1, 2, 3, 4] &lt;class 'list'&gt; . 위에 소개한 자료형들은 파이썬 내장 자료형으로, 파이썬 프로그래밍의 기초가 되는 자료형들이다. 변수와 자료형 항목에서는 이들 자료형을 활용하는 방법에 대해 상세히 다룰 예정이다. ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EC%9E%90%EB%A3%8C%ED%98%95.html#%EC%9E%90%EB%A3%8C%ED%98%95-%ED%99%95%EC%9D%B8",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EB%B3%80%EC%88%98%EC%99%80%20%EC%9E%90%EB%A3%8C%ED%98%95/%EC%9E%90%EB%A3%8C%ED%98%95.html#자료형-확인"
+  },"93": {
+    "doc": "장고 시작하기",
+    "title": "장고 시작하기",
+    "content": " ",
+    "url": "/docs/Django/%EC%B4%88%EB%B3%B4%EC%9E%90%EB%A5%BC%20%EC%9C%84%ED%95%9C%20Django/%EC%9E%A5%EA%B3%A0_%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0.html",
+    
+    "relUrl": "/docs/Django/%EC%B4%88%EB%B3%B4%EC%9E%90%EB%A5%BC%20%EC%9C%84%ED%95%9C%20Django/%EC%9E%A5%EA%B3%A0_%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0.html"
+  },"94": {
+    "doc": "장고 시작하기",
+    "title": "venv 환경 세팅",
+    "content": "&gt; python -m venv ./Django-for-Begginers &gt; ./Django-for-Begginers/Scripts/activate.ps1 . ",
+    "url": "/docs/Django/%EC%B4%88%EB%B3%B4%EC%9E%90%EB%A5%BC%20%EC%9C%84%ED%95%9C%20Django/%EC%9E%A5%EA%B3%A0_%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0.html#venv-%ED%99%98%EA%B2%BD-%EC%84%B8%ED%8C%85",
+    
+    "relUrl": "/docs/Django/%EC%B4%88%EB%B3%B4%EC%9E%90%EB%A5%BC%20%EC%9C%84%ED%95%9C%20Django/%EC%9E%A5%EA%B3%A0_%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0.html#venv-환경-세팅"
+  },"95": {
+    "doc": "장고 시작하기",
+    "title": "django 패키지 설치",
+    "content": "&gt; pip install django~=5.0.0 Collecting django~=5.0.0 Obtaining dependency information for django~=5.0.0 from https://files.pythonhosted.org/packages/00/5b/cadc834acdcafeacf7fc7d4a9e21a7009d2e677ae2e5d0d640845ed0a356/Django-5.0.12-py3-none-any.whl.metadata Downloading Django-5.0.12-py3-none-any.whl.metadata (4.1 kB) Collecting asgiref&lt;4,&gt;=3.7.0 (from django~=5.0.0) Obtaining dependency information for asgiref&lt;4,&gt;=3.7.0 from https://files.pythonhosted.org/packages/39/e3/893e8757be2612e6c266d9bb58ad2e3651524b5b40cf56761e985a28b13e/asgiref-3.8.1-py3-none-any.whl.metadata Downloading asgiref-3.8.1-py3-none-any.whl.metadata (9.3 kB) Collecting sqlparse&gt;=0.3.1 (from django~=5.0.0) Obtaining dependency information for sqlparse&gt;=0.3.1 from https://files.pythonhosted.org/packages/a9/5c/bfd6bd0bf979426d405cc6e71eceb8701b148b16c21d2dc3c261efc61c7b/sqlparse-0.5.3-py3-none-any.whl.metadata Downloading sqlparse-0.5.3-py3-none-any.whl.metadata (3.9 kB) Collecting tzdata (from django~=5.0.0) Obtaining dependency information for tzdata from https://files.pythonhosted.org/packages/0f/dd/84f10e23edd882c6f968c21c2434fe67bd4a528967067515feca9e611e5e/tzdata-2025.1-py2.py3-none-any.whl.metadata Using cached tzdata-2025.1-py2.py3-none-any.whl.metadata (1.4 kB) Downloading Django-5.0.12-py3-none-any.whl (8.2 MB) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 8.2/8.2 MB 20.9 MB/s eta 0:00:00 Downloading asgiref-3.8.1-py3-none-any.whl (23 kB) Downloading sqlparse-0.5.3-py3-none-any.whl (44 kB) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 44.4/44.4 kB ? eta 0:00:00 Using cached tzdata-2025.1-py2.py3-none-any.whl (346 kB) Installing collected packages: tzdata, sqlparse, asgiref, django Successfully installed asgiref-3.8.1 django-5.0.12 sqlparse-0.5.3 tzdata-2025.1 [notice] A new release of pip is available: 23.2.1 -&gt; 25.0.1 [notice] To update, run: python.exe -m pip install --upgrade pip . ",
+    "url": "/docs/Django/%EC%B4%88%EB%B3%B4%EC%9E%90%EB%A5%BC%20%EC%9C%84%ED%95%9C%20Django/%EC%9E%A5%EA%B3%A0_%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0.html#django-%ED%8C%A8%ED%82%A4%EC%A7%80-%EC%84%A4%EC%B9%98",
+    
+    "relUrl": "/docs/Django/%EC%B4%88%EB%B3%B4%EC%9E%90%EB%A5%BC%20%EC%9C%84%ED%95%9C%20Django/%EC%9E%A5%EA%B3%A0_%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0.html#django-패키지-설치"
+  },"96": {
+    "doc": "장고 시작하기",
+    "title": "django 프로젝트 설치",
+    "content": "&gt; django-admin startproject django_project . 다음과 같은 구조의 파일과 디렉토리가 생성된다. &gt; tree /f /a | manage.py | \\---django_project asgi.py settings.py urls.py wsgi.py __init__.py . ",
+    "url": "/docs/Django/%EC%B4%88%EB%B3%B4%EC%9E%90%EB%A5%BC%20%EC%9C%84%ED%95%9C%20Django/%EC%9E%A5%EA%B3%A0_%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0.html#django-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%84%A4%EC%B9%98",
+    
+    "relUrl": "/docs/Django/%EC%B4%88%EB%B3%B4%EC%9E%90%EB%A5%BC%20%EC%9C%84%ED%95%9C%20Django/%EC%9E%A5%EA%B3%A0_%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0.html#django-프로젝트-설치"
+  },"97": {
+    "doc": "장고 시작하기",
+    "title": "django 실행하기",
+    "content": "&gt; python manage.py runserver Watching for file changes with StatReloader Performing system checks... System check identified no issues (0 silenced). You have 18 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions. Run 'python manage.py migrate' to apply them. March 01, 2025 - 21:57:29 Django version 5.0.12, using settings 'django_project.settings' Starting development server at http://127.0.0.1:8000/ Quit the server with CTRL-BREAK. &gt; dir Mode LastWriteTime Length Name ---- ------------- ------ ---- d----- 2025-03-01 오후 9:57 django_project -a---- 2025-03-01 오후 9:57 0 db.sqlite3 -a---- 2025-03-01 오후 9:56 692 manage.py . | 서버 실행 이 후 db.sqlite3 파일이 새로 생성됐다. SQLite 는 연결 시 해당 파일이 없으면 자동으로 새 파일을 만든다. | http://127.0.0.1:8000 대신 http://localhost:8000 으로도 접속 가능하다. | Ctrl + c 키를 눌러 로컬 서버를 중지할 수 있다. | . ",
+    "url": "/docs/Django/%EC%B4%88%EB%B3%B4%EC%9E%90%EB%A5%BC%20%EC%9C%84%ED%95%9C%20Django/%EC%9E%A5%EA%B3%A0_%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0.html#django-%EC%8B%A4%ED%96%89%ED%95%98%EA%B8%B0",
+    
+    "relUrl": "/docs/Django/%EC%B4%88%EB%B3%B4%EC%9E%90%EB%A5%BC%20%EC%9C%84%ED%95%9C%20Django/%EC%9E%A5%EA%B3%A0_%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0.html#django-실행하기"
   },"98": {
     "doc": "주석",
     "title": "주석",
@@ -720,44 +720,65 @@
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EC%A3%BC%EC%84%9D/%EC%A3%BC%EC%84%9D.html#참조"
   },"103": {
+    "doc": "초보자를 위한 Django",
+    "title": "초보자를 위한 장고",
+    "content": "Windows11 과 venv 환경에서 진행합니다. 교육 자료는 Django for Beginners 를 참고하여 작성했습니다. ",
+    "url": "/docs/Django/%EC%B4%88%EB%B3%B4%EC%9E%90%EB%A5%BC%20%EC%9C%84%ED%95%9C%20Django/%EC%B4%88%EB%B3%B4%EC%9E%90%EB%A5%BC_%EC%9C%84%ED%95%9C_%EC%B4%88%EB%B3%B4%EC%9E%90%EB%A5%BC%20%EC%9C%84%ED%95%9C%20Django.html#%EC%B4%88%EB%B3%B4%EC%9E%90%EB%A5%BC-%EC%9C%84%ED%95%9C-%EC%9E%A5%EA%B3%A0",
+    
+    "relUrl": "/docs/Django/%EC%B4%88%EB%B3%B4%EC%9E%90%EB%A5%BC%20%EC%9C%84%ED%95%9C%20Django/%EC%B4%88%EB%B3%B4%EC%9E%90%EB%A5%BC_%EC%9C%84%ED%95%9C_%EC%B4%88%EB%B3%B4%EC%9E%90%EB%A5%BC%20%EC%9C%84%ED%95%9C%20Django.html#초보자를-위한-장고"
+  },"104": {
+    "doc": "초보자를 위한 Django",
+    "title": "초보자를 위한 Django",
+    "content": " ",
+    "url": "/docs/Django/%EC%B4%88%EB%B3%B4%EC%9E%90%EB%A5%BC%20%EC%9C%84%ED%95%9C%20Django/%EC%B4%88%EB%B3%B4%EC%9E%90%EB%A5%BC_%EC%9C%84%ED%95%9C_%EC%B4%88%EB%B3%B4%EC%9E%90%EB%A5%BC%20%EC%9C%84%ED%95%9C%20Django.html",
+    
+    "relUrl": "/docs/Django/%EC%B4%88%EB%B3%B4%EC%9E%90%EB%A5%BC%20%EC%9C%84%ED%95%9C%20Django/%EC%B4%88%EB%B3%B4%EC%9E%90%EB%A5%BC_%EC%9C%84%ED%95%9C_%EC%B4%88%EB%B3%B4%EC%9E%90%EB%A5%BC%20%EC%9C%84%ED%95%9C%20Django.html"
+  },"105": {
     "doc": "추가 자료",
     "title": "추가 자료",
     "content": " ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EC%B6%94%EA%B0%80_%EC%9E%90%EB%A3%8C/%EC%B6%94%EA%B0%80_%EC%9E%90%EB%A3%8C.html",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EC%B6%94%EA%B0%80_%EC%9E%90%EB%A3%8C/%EC%B6%94%EA%B0%80_%EC%9E%90%EB%A3%8C.html"
-  },"104": {
+  },"106": {
+    "doc": "파이썬 고급 팁",
+    "title": "파이썬 고급 팁",
+    "content": " ",
+    "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EA%B3%A0%EA%B8%89_%ED%8C%81/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EA%B3%A0%EA%B8%89_%ED%8C%81.html",
+    
+    "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EA%B3%A0%EA%B8%89_%ED%8C%81/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EA%B3%A0%EA%B8%89_%ED%8C%81.html"
+  },"107": {
     "doc": "파이썬 내장 자료형",
     "title": "파이썬 내장 자료형",
     "content": "| 자료형 | 분류 | . | int | Numeric Types | . | float | Numeric Types | . | complex | Numeric Types | . | bool | Boolean Type | . | list | Sequence Types | . | tuple | Sequence Types | . | range | Sequence Types | . | str | Text Seqence Type | . | bytes | Binary Sequence Types | . | bytearray | Binary Sequence Types | . | momoryview | Binary Sequence Types | . | set | Set Types | . | frozenset | Set Types | . | dict | Mapping Types | . ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EC%B6%94%EA%B0%80_%EC%9E%90%EB%A3%8C/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%82%B4%EC%9E%A5_%EC%9E%90%EB%A3%8C%ED%98%95.html",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EC%B6%94%EA%B0%80_%EC%9E%90%EB%A3%8C/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%82%B4%EC%9E%A5_%EC%9E%90%EB%A3%8C%ED%98%95.html"
-  },"105": {
+  },"108": {
     "doc": "파이썬 디자인 패턴",
     "title": "파이썬 디자인 패턴",
     "content": " ",
-    "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4.html",
+    "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4.html",
     
-    "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4.html"
-  },"106": {
+    "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4.html"
+  },"109": {
     "doc": "파이썬 튜토리얼",
     "title": "파이썬 튜토리얼",
     "content": " ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC.html",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC.html"
-  },"107": {
+  },"110": {
     "doc": "파이썬 튜토리얼",
     "title": "개요",
-    "content": "본 튜토리얼은 파이썬 공식 홈페이지의 The Python Tutorial 을 참고하여 작성하고 있습니다. ",
+    "content": "본 튜토리얼은 파이썬 공식 홈페이지의 The Python Tutorial 을 참고하여 작성했습니다. ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC.html#%EA%B0%9C%EC%9A%94",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC.html#개요"
-  },"108": {
+  },"111": {
     "doc": "한국어 - 영어",
     "title": "한국어 - 영어",
-    "content": "| 한국어 | 영어 |   | . | 개행 | New line |   | . | 객체 | Object |   | . | 논리 연산자 | Boolean operators |   | . | 변수 | Variable |   | . | 복합 연산자 | Augmented assignment |   | . | 비교 연산자 | Comparison operators |   | . | 원시 문자열 | Raw String | o | . | 산술 연산자 | Arithmetic operators |   | . | 자료형 | Data type |   | . | 형 변환 | Type converstion |   | . ",
+    "content": "| 한국어 | 영어 | . | 개행 | New line | . | 객체 | Object | . | 논리 연산자 | Boolean operators | . | 변수 | Variable | . | 복합 연산자 | Augmented assignment | . | 비교 연산자 | Comparison operators | . | 원시 문자열 | Raw String | . | 산술 연산자 | Arithmetic operators | . | 자료형 | Data type | . | 형 변환 | Type converstion | . ",
     "url": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EC%B6%94%EA%B0%80_%EC%9E%90%EB%A3%8C/%ED%95%9C%EA%B5%AD%EC%96%B4-%EC%98%81%EC%96%B4.html",
     
     "relUrl": "/docs/%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/%EC%B6%94%EA%B0%80_%EC%9E%90%EB%A3%8C/%ED%95%9C%EA%B5%AD%EC%96%B4-%EC%98%81%EC%96%B4.html"

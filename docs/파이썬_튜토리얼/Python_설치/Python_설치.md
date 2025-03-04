@@ -28,18 +28,18 @@ Add python.exe to PATH 를 선택하면 현재 설치하는 버전의 Python 이
 설치 완료<br><br>
 
 ## 설치 버전 확인  
-1. 버전 확인  
+* 버전 확인  
 ```
 C:\Users\ME>python --version
 Python 3.12.9
 ```
-2. 설치된 모든 버전 확인  
+* 설치된 모든 버전 확인  
 ```
 C:\Users\ME>py -0
  -V:3.13 *        Python 3.13 (64-bit)
  -V:3.12          Python 3.12 (64-bit)
 ```
-3. 설치된 모든 버전과 설치 경로 확인  
+* 설치된 모든 버전과 설치 경로 확인  
 ```
 C:\Users\ME>py -0p
  -V:3.13 *        C:\Users\ME\AppData\Local\Programs\Python\Python313\python.exe

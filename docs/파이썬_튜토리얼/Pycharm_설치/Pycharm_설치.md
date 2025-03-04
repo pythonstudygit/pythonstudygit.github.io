@@ -2,7 +2,6 @@
 title: Pycharm 설치
 parent: 파이썬 튜토리얼
 nav_order: 2
-has_toc: false
 ---
 # Pycharm 설치  
 
