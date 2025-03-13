@@ -1,6 +1,9 @@
-_site
+_site/
+.idea/
 docs/객체지향_파이썬_프로그래밍
 docs/파이썬_디자인_패턴
+docs/파이썬_튜토리얼/파이썬_실전_예제
+docs/파이썬_튜토리얼/미분류
 docs/Pandas
 docs/OpenAI
 docs/Django
