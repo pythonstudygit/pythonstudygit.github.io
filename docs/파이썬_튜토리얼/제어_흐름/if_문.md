@@ -138,10 +138,10 @@ else:
 ```python
 number = int(input("숫자를 입력해주세요: "))
 
-is_positive = False
-
 if number > 0:
     is_positive = True
+else:
+    is_positive = False
     
 print(is_positive)
 ```
@@ -203,12 +203,14 @@ if a >= 0 and b < a:
 a = ["고추잠자리", "꿀벌", "귀뚜라미"]
 b = 5
 
-if "잠자리" in a or b >= 0:
+if ("잠자리" in a) or (b >= 0):
     print("실행-1")
 
-if "고추잠자리" in a or b == 0:
+if ("고추잠자리" in a) or (b == 0):
     print("실행-2")
 
+if ("잠자리" in a) or (b == 0):
+    print("실행-3")
 ```
 ```
 >>>
@@ -228,13 +230,17 @@ if "고추잠자리" in a or b == 0:
 
 ```python
 a = []
+b = [1, 2, 3]
 
 if not a:
-    print("빈 리스트입니다.")
+    print("a 는 빈 리스트입니다.")
+
+if not b:
+    print("b 는 빈 리스트입니다.")
 ```
 ```
 >>>
-빈 리스트입니다.
+a 는 빈 리스트입니다.
 ```
 
 ## 연습 문제
