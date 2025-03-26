@@ -52,6 +52,9 @@ callouts:
   warning:
     title: Warning
     color: red
+  note:
+    title: NOTE
+    color: blue
     
 custom_css:
   - /assets/css/custom.css
