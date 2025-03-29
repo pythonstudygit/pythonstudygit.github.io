@@ -1,6 +1,6 @@
 ---
 title: random 모듈
-nav_order: 2
+nav_order: 1
 parent: 내장 라이브러리
 ---
 
